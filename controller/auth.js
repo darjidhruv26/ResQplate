@@ -12,47 +12,43 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const handleSessionSave = req =>
+  new Promise((resolve, reject) => {
+    req.session.save(err => (err ? reject(err) : resolve()));
+  });
+
 let userEmail;
 
-exports.getHome = (req, res, next) => {
-  res.render("home", {
-    pageTitle: "resQplate",
-  });
-};
-
 exports.getSignUpEmail = (req, res, next) => {
-  res.render("signup_email", {
+  res.render("auth/signup_email", {
     pageTitle: "Signup | Login",
   });
 };
 
 exports.getSignUpPassword = (req, res, next) => {
-  res.render("signup_password", {
+  res.render("auth/signup_password", {
     emailExists: true,
     email: userEmail,
-    pageTitle: "Signup",
+    pageTitle: "Onboarding",
   });
 };
 
-exports.postSignUpPassword = (req, res, next) => {
-  const { email } = req.body;
-  userEmail = email;
-  let emailExists = false;
-  User.findOne({ email: email })
-    .then(userDoc => {
-      if (userDoc) {
-        emailExists = true;
-      }
-      return res.render("signup_password", {
-        emailExists,
-        email,
-        pageTitle: "Signup",
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send("Internal Server Error");
+exports.postSignUpPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    userEmail = email;
+
+    const user = await User.findOne({ email });
+
+    return res.render("auth/signup_password", {
+      emailExists: !!user,
+      email,
+      pageTitle: "Signup",
     });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 exports.postSignUpOnboarding = async (req, res, next) => {
@@ -71,41 +67,65 @@ exports.postSignUpOnboarding = async (req, res, next) => {
     const result = await user.save();
 
     if (result) {
+      req.session.isLoggedIn = true;
+      req.session.user = result;
+      await handleSessionSave(req);
+    }
+
+    return res.redirect("/userOnboarding");
+  } catch (err) {
+    console.error("Error:", err);
+  }
+};
+
+exports.getUserOnboarding = (req, res, next) => {
+  res.render("auth/onboarding2", {
+    pageTitle: "Onboarding",
+  });
+};
+
+exports.postEmailConfirm = async (req, res, next) => {
+  try {
+    const { userType } = req.body;
+    const email = req.session.user.email;
+
+    let updateUser = await User.findOne({ email });
+
+    if (updateUser) {
+      updateUser.userType = userType;
+      await updateUser.save();
+
       const mailOptions = {
         to: email,
         from: "dmeet2625@gmail.com",
         subject: "Thanks you for signing up!",
         html: `
-        <p>Thank you for signing up.</p>
-        <p>Click this <a href="http://localhost:3000/">link</a> to signup.</p>
+          <p>Thank you for signing up.</p>
+          <p>Click this <a href="http://localhost:3000/">link</a> to signup.</p>
         `,
       };
 
       const mail = await transporter.sendMail(mailOptions);
       console.log(mail);
 
-      req.session.isLoggedIn = true;
-      req.session.user = result;
-
-      await req.session.save();
-
-      return res.render("email_confirm", {
-        email: result.email,
+      return res.render("auth/email_confirm", {
+        email: updateUser.email,
         pageTitle: "Email Confirm",
       });
+    } else {
+      return res.status(404).send("User not found");
     }
-  } catch (err) {
-    console.error("Error:", err);
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
 exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
 
-    if (user === null) {
+    if (!user) {
       console.log("Signup first");
       return res.redirect("/signup_email");
     }
@@ -116,21 +136,19 @@ exports.postLogin = async (req, res, next) => {
       req.session.isLoggedIn = true;
       req.session.user = user;
 
-      console.log(req.session);
+      // console.log(req.session);
 
-      await new Promise((resolve, reject) => {
-        req.session.save(err => {
-          if (err) {
-            console.log("Session save error", err);
-            reject(err);
-          } else {
-            console.log("Session saved successfully");
-            resolve();
-          }
-        });
-      });
+      await handleSessionSave(req);
 
-      return res.redirect("/home");
+      const userTypePages = {
+        donater: "/donater",
+        recycler: "/recycler",
+        needy: "/allow-location",
+      };
+
+      const redirectPage = userTypePages[user.userType];
+
+      return res.redirect(redirectPage);
     } else {
       console.log("Password is not matched");
       return res.redirect("/signup_password");
@@ -141,7 +159,7 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.getReset = (req, res, next) => {
-  res.render("reset", {
+  res.render("auth/reset", {
     pageTitle: "Reset Password",
     email: userEmail,
   });
@@ -174,7 +192,7 @@ exports.postReset = (req, res, next) => {
         });
         if (result) {
           console.log("Email has sent successfully");
-          return res.render("email_confirm", {
+          return res.render("auth/email_confirm", {
             email,
             pageTitle: "Email Confirm",
           });
@@ -196,7 +214,7 @@ exports.getNewPassword = (req, res, next) => {
     resetTokenExpiration: { $gt: Date.now() },
   })
     .then(user => {
-      res.render("new-password", {
+      res.render("auth/new-password", {
         userId: user._id.toString(),
         passwordToken: token,
         pageTitle: "Reset Password",
@@ -232,7 +250,7 @@ exports.postNewPassword = (req, res, next) => {
 
     .then(result => {
       console.log("Password has been changed!");
-      return res.render("password_reset", {
+      return res.render("auth/password_reset", {
         email: resetUser.email,
         pageTitle: "Password Change",
       });

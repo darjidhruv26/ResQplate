@@ -6,15 +6,18 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const User = require("./model/user");
+require('dotenv').config();
 
-const MONGODB_URL =
-  "mongodb+srv://mastermind:ES7D5YZV2NH0WBnH@cluster0.rhymsld.mongodb.net/resQplateDB";
+const MONGODB_URL =process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
 const app = express();
 app.set("view engine", "ejs");
 
 const authRoutes = require("./routes/auth");
+const needyRoutes = require("./routes/needy");
+const donaterRoutes = require("./routes/donater");
+const recyclerRoutes = require("./routes/recycler");
 
 const store = new MongoDBStore({
   uri: MONGODB_URL,
@@ -38,6 +41,9 @@ app.use(
 );
 
 app.use(authRoutes);
+app.use(needyRoutes);
+app.use(donaterRoutes);
+app.use(recyclerRoutes);
 app.use(express.json());
 
 app.use((req, res, next) => {

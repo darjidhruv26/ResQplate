@@ -20,6 +20,10 @@ const userSchema = new Schema({
     type: Number,
   },
 
+  userType: {
+    type: String,
+  },
+
   resetToken: {
     type: String,
   },

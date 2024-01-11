@@ -1,3 +1,40 @@
-node_modules
-package-lock.json
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+lib/
+bin/
+dist/
+vendor/
+
+# Optional: Environment variables
 .env
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User-specific files
+*.sublime-workspace
+*.sublime-project
+*.komodoproject
+.komodotools

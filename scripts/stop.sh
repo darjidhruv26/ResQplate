@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker stop resqplate-app
-docker rm resqplate-app
+docker stop reqplate
+docker rm reqplate
 docker image rm dhruvdarji123/reqplate-app:latest 

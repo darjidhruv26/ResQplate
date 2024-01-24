@@ -26,7 +26,7 @@ phases:
     commands:
       - echo "waiting right now"
       - docker login -u $USERNAME -p $PASSWORD
-      - docker push dhruvdarji123/:latest
+      - docker push dhruvdarji123/reqplate-app:latest
 artifacts:
   files:
     - '**/*'

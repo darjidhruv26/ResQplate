@@ -4,7 +4,7 @@ env:
   parameter-store:
     USERNAME: /myapp/docker-credentials/username
     PASSWORD: /myapp/docker-credentials/password
-    #KEY:  /myapp/api/key
+    KEY:  /myapp/mongodb/url
 
         
 phases:
@@ -21,7 +21,7 @@ phases:
       - echo "dependencies installed"
   build:
     commands:
-      - docker build . -t dhruvdarji123/reqplate-app:latest
+      - docker build . -t dhruvdarji123/reqplate-app:latest --build-arg MONGODB_URL_PARAM=$KEY
   post_build:
     commands:
       - echo "waiting right now"

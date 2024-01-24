@@ -14,7 +14,8 @@ RUN npm install
 COPY . .
 
 #Include Environment variables
-COPY .env .env
+ARG MONGODB_URL_PARAM
+ENV MONGODB_URL=${MONGODB_URL_PARAM}
 
 # Expose the port on which the application will run
 EXPOSE 3000

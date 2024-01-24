@@ -15,7 +15,7 @@ COPY . .
 
 #Include Environment variables
 ARG MONGODB_URL_PARAM
-ENV MONGODB_URL=${MONGODB_URL_PARAM}
+ENV MONGODB_URI=${MONGODB_URL_PARAM}
 
 # Expose the port on which the application will run
 EXPOSE 3000

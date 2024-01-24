@@ -8,6 +8,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const User = require("./model/user");
 require('dotenv').config();
 
+
 const MONGODB_URL =process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);

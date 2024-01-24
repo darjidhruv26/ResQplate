@@ -133,20 +133,24 @@ exports.postLogin = async (req, res, next) => {
     const doMatch = bcrypt.compare(password, user.password);
 
     if (doMatch) {
+      const isFirstLogin = !req.session.hasOwnProperty("firstLogin");
+
       req.session.isLoggedIn = true;
       req.session.user = user;
-
-      // console.log(req.session);
 
       await handleSessionSave(req);
 
       const userTypePages = {
-        donater: "/donater",
+        donater: isFirstLogin ? "/donator-type" : "/donator",
         recycler: "/recycler",
         needy: "/allow-location",
       };
 
       const redirectPage = userTypePages[user.userType];
+
+      if (isFirstLogin) {
+        req.session.firstLogin = true;
+      }
 
       return res.redirect(redirectPage);
     } else {
@@ -165,97 +169,94 @@ exports.getReset = (req, res, next) => {
   });
 };
 
-exports.postReset = (req, res, next) => {
-  const { email } = req.body;
-  crypto.randomBytes(32, (err, buffer) => {
-    if (err) return res.redirect("/");
-    const token = buffer.toString("hex");
-    User.findOne({ email: userEmail })
-      .then(user => {
-        if (!user) {
-          console.log("Your email address is not registered.");
-          return res.redirect("/signup_email");
-        }
-        user.resetToken = token;
-        user.resetTokenExpiration = Date.now() + 3600000;
-        return user.save();
-      })
-      .then(result => {
-        transporter.sendMail({
-          to: email,
-          from: "dmeet2625@gmail.com",
-          subject: "Password reset",
-          html: `
+exports.postReset = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const tokenBuffer = await new Promise((resolve, reject) => {
+      crypto.randomBytes(32, (err, buffer) => {
+        if (err) reject(err);
+        resolve(buffer);
+      });
+    });
+
+    const token = tokenBuffer.toString("hex");
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      console.log("Your email address is not registered.");
+      return res.redirect("/signup_email");
+    }
+
+    user.resetToken = token;
+    user.resetTokenExpiration = Date.now() + 3600000;
+
+    await user.save();
+
+    await transporter.sendMail({
+      to: email,
+      from: "dmeet2625@gmail.com",
+      subject: "Password reset",
+      html: `
         <p>You requested a password reset</p>
         <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
-        `,
-        });
-        if (result) {
-          console.log("Email has sent successfully");
-          return res.render("auth/email_confirm", {
-            email,
-            pageTitle: "Email Confirm",
-          });
-        }
-      })
-      .then(res => {
-        return;
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  });
+      `,
+    });
+
+    console.log("Email has sent successfully");
+    return res.render("auth/email_confirm", {
+      email,
+      pageTitle: "Email Confirm",
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
-exports.getNewPassword = (req, res, next) => {
-  const token = req.params.token;
-  User.findOne({
-    resetToken: token,
-    resetTokenExpiration: { $gt: Date.now() },
-  })
-    .then(user => {
-      res.render("auth/new-password", {
-        userId: user._id.toString(),
-        passwordToken: token,
-        pageTitle: "Reset Password",
-        email: user.email,
-      });
-    })
-    .catch(err => {
-      console.log(err.message);
+exports.getNewPassword = async (req, res, next) => {
+  try {
+    const token = req.params.token;
+    const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
     });
+
+    res.render("auth/new-password", {
+      userId: user._id.toString(),
+      passwordToken: token,
+      pageTitle: "Reset Password",
+      email: user.email,
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
-exports.postNewPassword = (req, res, next) => {
-  const newPassword = req.body.password;
-  const userId = req.body.userId;
-  const passwordToken = req.body.passwordToken;
-  let resetUser;
+exports.postNewPassword = async (req, res, next) => {
+  try {
+    const newPassword = req.body.password;
+    const userId = req.body.userId;
+    const passwordToken = req.body.passwordToken;
 
-  User.findOne({
-    resetToken: passwordToken,
-    resetTokenExpiration: { $gt: Date.now() },
-    _id: userId,
-  })
-    .then(user => {
-      resetUser = user;
-      return bcrypt.hash(newPassword, 12);
-    })
-    .then(hashedPassword => {
-      resetUser.password = hashedPassword;
-      resetUser.resetToken = undefined;
-      resetUser.resetTokenExpiration = undefined;
-      return resetUser.save();
-    })
-
-    .then(result => {
-      console.log("Password has been changed!");
-      return res.render("auth/password_reset", {
-        email: resetUser.email,
-        pageTitle: "Password Change",
-      });
-    })
-    .catch(err => {
-      console.log(err.message);
+    const user = await User.findOne({
+      resetToken: passwordToken,
+      resetTokenExpiration: { $gt: Date.now() },
+      _id: userId,
     });
+
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+    user.password = hashedPassword;
+    user.resetToken = undefined;
+    user.resetTokenExpiration = undefined;
+
+    await user.save();
+
+    console.log("Password has been changed!");
+    return res.render("auth/password_reset", {
+      email: user.email,
+      pageTitle: "Password Change",
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
 };

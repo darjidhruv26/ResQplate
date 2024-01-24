@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Banner Click Example</title>
+    <title<%= pageTitle %></title>
     <link rel="stylesheet" href="/css/landing.css" />
     <link rel="stylesheet" href="/css/onboarding.css" />
   </head>
@@ -35,7 +35,8 @@
     <div class="radio-button__container">
       <h1>Tell us more about yourself</h1>
       <p>Which of the following describes you</p>
-      <form>
+      <form action="/donator" method="post">
+        <input id="donatorType" type="hidden" name="donatorType" value="">
         <div
           class="radio-button__custom"
           onclick="selectRadio('banner1Radio')"
@@ -63,6 +64,7 @@
     </div>
 
     <script>
+      const inputEl = document.getElementById('donatorType');
       function selectRadio(radioId) {
         document
           .querySelectorAll('input[name="bannerSelection"]')
@@ -75,6 +77,8 @@
         ).value;
 
         updateBorder(selectedValue);
+
+        inputEl.value = selectedValue;
         console.log("Selected Value: " + selectedValue);
       }
       function updateBorder(selectedValue) {

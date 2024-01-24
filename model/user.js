@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: String,
   },
 
+  donatorType: {
+    type: String,
+  },
+
   resetToken: {
     type: String,
   },

@@ -31,5 +31,5 @@ artifacts:
   files:
     - '**/*'
   base-directory: "./"
-  name: build-artifact-name
+  name: resqplate
   discard-paths: no

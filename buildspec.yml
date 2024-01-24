@@ -21,12 +21,12 @@ phases:
       - echo "dependencies installed"
   build:
     commands:
-      - docker build . -t dhruvdarji123/reqplate-app:latest --build-arg MONGODB_URL_PARAM=$KEY
+      - docker build . -t dhruvdarji123/resqplate-app:latest --build-arg MONGODB_URL_PARAM=$KEY
   post_build:
     commands:
       - echo "waiting right now"
       - docker login -u $USERNAME -p $PASSWORD
-      - docker push dhruvdarji123/reqplate-app:latest
+      - docker push dhruvdarji123/resqplate-app:latest
 artifacts:
   files:
     - '**/*'

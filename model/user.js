@@ -42,6 +42,10 @@ const userSchema = new Schema({
   resetTokenExpiration: {
     type: Date,
   },
+
+  businessName: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

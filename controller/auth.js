@@ -125,7 +125,7 @@ exports.postLogin = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     const hasDonatorType = user.donatorType;
-    console.log(hasDonatorType);
+    const hasBuisnessName = user.businessName;
 
     if (!user) {
       console.log("Signup first");
@@ -141,7 +141,7 @@ exports.postLogin = async (req, res, next) => {
       await handleSessionSave(req);
 
       const userTypePages = {
-        donater: !hasDonatorType ? "/donator-type" : "/donator",
+        donater: !hasDonatorType ? "/donator-type" : (hasBuisnessName ? "/dashboard" : "/donator"),
         recycler: "/recycler",
         needy: "/allow-location",
       };
@@ -157,7 +157,6 @@ exports.postLogin = async (req, res, next) => {
     console.error("Error:", err);
   }
 };
-
 exports.getReset = (req, res, next) => {
   res.render("auth/reset", {
     pageTitle: "Reset Password",

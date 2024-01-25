@@ -34,9 +34,25 @@ exports.getHomepage = (req, res, next) => {
   });
 };
 
-exports.postHomePage = (req, res, next) => {
-  // const name = req.body.businessname;
-  res.redirect("/dashboard");
+exports.postHomePage = async (req, res, next) => {
+  try {
+    const name = req.body.businessname;
+    const currUserID = req.session.user._id;
+
+    let updatedUser;
+    const user = await User.findOne({ _id: currUserID });
+    updatedUser = user;
+    updatedUser.businessName = name;
+
+    const result = await updatedUser.save();
+
+    if (result) {
+      console.log("UPDATED");
+      res.redirect("/dashboard");
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 exports.getDashboard = (req, res, next) => {

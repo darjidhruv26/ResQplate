@@ -5,6 +5,8 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const multer = require("multer");
+
 const User = require("./model/user");
 require('dotenv').config();
 
@@ -27,6 +29,7 @@ const store = new MongoDBStore({
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(

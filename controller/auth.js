@@ -124,6 +124,8 @@ exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    const hasDonatorType = user.donatorType;
+    console.log(hasDonatorType);
 
     if (!user) {
       console.log("Signup first");
@@ -133,24 +135,18 @@ exports.postLogin = async (req, res, next) => {
     const doMatch = bcrypt.compare(password, user.password);
 
     if (doMatch) {
-      const isFirstLogin = !req.session.hasOwnProperty("firstLogin");
-
       req.session.isLoggedIn = true;
       req.session.user = user;
 
       await handleSessionSave(req);
 
       const userTypePages = {
-        donater: isFirstLogin ? "/donator-type" : "/donator",
+        donater: !hasDonatorType ? "/donator-type" : "/donator",
         recycler: "/recycler",
         needy: "/allow-location",
       };
 
       const redirectPage = userTypePages[user.userType];
-
-      if (isFirstLogin) {
-        req.session.firstLogin = true;
-      }
 
       return res.redirect(redirectPage);
     } else {
@@ -259,4 +255,11 @@ exports.postNewPassword = async (req, res, next) => {
   } catch (err) {
     console.log(err.message);
   }
+};
+
+exports.logout = (req, res, next) => {
+  req.session.destroy(err => {
+    console.log(err);
+    res.redirect("/");
+  });
 };

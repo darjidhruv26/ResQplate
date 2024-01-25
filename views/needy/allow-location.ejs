@@ -33,6 +33,7 @@
       function showPosition(position) {
         userLat = position.coords.latitude;
         userLng = position.coords.longitude;
+        console.log(userLat, userLng);
         getCountryCityInfo(userLat, userLng);
       }
 
@@ -43,21 +44,21 @@
         const API_KEY = "2f9ea21144b7438fa41dc7ae19882918";
         const API_URL = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${API_KEY}`;
 
-        fetch(API_URL, {
-          method: "GET",
-          mode: "cors",
-          headers: {
-            "Access-control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
+        fetch(API_URL)
           .then(response => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
             return response.json();
           })
           .then(data => {
             if (data.results && data.results.length > 0) {
               const result = data.results[0];
-              const city = result.components.city || result.components.town;
+              const city =
+                result.components.city ||
+                result.components.town ||
+                result.components.state ||
+                "Unknown";
               console.log(city);
               inputEl.value = city;
               document.getElementById("locationForm").submit();
@@ -66,7 +67,7 @@
             }
           })
           .catch(error => {
-            console.error(error.message);
+            console.error("Fetch error:", error);
           });
       }
     </script>

@@ -28,6 +28,13 @@ const userSchema = new Schema({
     type: String,
   },
 
+  myFood: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+
   resetToken: {
     type: String,
   },

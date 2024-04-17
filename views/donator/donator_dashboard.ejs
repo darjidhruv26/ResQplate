@@ -13,7 +13,9 @@
   </head>
   <body>
     <div id="navbar">
-      <img src="./images/Vector(1).svg" alt="Logo..." />
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
       <form method="post" action="/logout">
         <input type="image" src="./images/power.svg" alt="Submit" />
       </form>
@@ -25,10 +27,17 @@
           <div>Donate</div>
         </button>
       </form>
-      <button type="button" class="button">
+
+      <button type="button" class="button" id="showPage">
         <img src="./images/donate_hand.svg" alt="Hand" />
         <div>Donations & Food requests</div>
       </button>
     </div>
   </body>
+
+  <script>
+    document.getElementById("showPage").addEventListener("click", function () {
+      window.location.href = "/donations";
+    });
+  </script>
 </html>

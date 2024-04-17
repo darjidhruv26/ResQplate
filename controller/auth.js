@@ -124,15 +124,13 @@ exports.postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    const hasDonatorType = user.donatorType;
-    const hasBuisnessName = user.businessName;
 
     if (!user) {
       console.log("Signup first");
       return res.redirect("/signup_email");
     }
 
-    const doMatch = bcrypt.compare(password, user.password);
+    const doMatch = await bcrypt.compare(password, user.password);
 
     if (doMatch) {
       req.session.isLoggedIn = true;
@@ -140,14 +138,20 @@ exports.postLogin = async (req, res, next) => {
 
       await handleSessionSave(req);
 
+      const hasDonatorType = user.donatorType;
+      const hasBusinessName = user.businessName;
+
       const userTypePages = {
-        donater: !hasDonatorType ? "/donator-type" : (hasBuisnessName ? "/dashboard" : "/donator"),
+        donater: !hasDonatorType
+          ? "/donator-type"
+          : hasBusinessName
+          ? "/dashboard"
+          : "/donator",
         recycler: "/recycler",
         needy: "/allow-location",
       };
 
       const redirectPage = userTypePages[user.userType];
-
       return res.redirect(redirectPage);
     } else {
       console.log("Password is not matched");
@@ -155,8 +159,10 @@ exports.postLogin = async (req, res, next) => {
     }
   } catch (err) {
     console.error("Error:", err);
+    res.status(500).send("Internal Server Error");
   }
 };
+
 exports.getReset = (req, res, next) => {
   res.render("auth/reset", {
     pageTitle: "Reset Password",

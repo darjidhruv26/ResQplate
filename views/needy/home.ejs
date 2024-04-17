@@ -23,7 +23,7 @@
   </head>
   <body>
     <div id="navbar">
-      <img src="./images/Vector(1).svg" alt="Logo..." />
+      <a href="/needy"><img src="./images/Vector(1).svg" alt="Logo..." /></a>
       <form method="post" action="/logout">
         <input type="image" src="./images/power.svg" alt="Submit" />
       </form>
@@ -48,27 +48,31 @@
       </div>
     </div>
     <div class="needy-container">
-      <% if (foodData && foodData.length > 0) { %> <% foodData.forEach(food => {
-      %>
+      <% if (foodData && foodData.length > 0) { %> <% foodData.forEach(food =>
+      {%>
       <div class="card">
-        <div class="card-img">
-          <img src="<%= food.image %>" alt="Food..." />
-        </div>
-        <div class="card-content">
-          <% if (food.type === 'veg') { %>
-          <img src="./images/veg.svg" alt="Vegetarian" />
-          <% } else { %>
-          <img src="./images/non-veg.svg" alt="Non Vegetarian" />
-          <% } %>
-          <p class="card-category"><%= food.category %></p>
-          <h2><%= food.name %></h2>
-          <% if (food.feedAbout) { %>
-          <p class="card-servings"><%= food.feedAbout %> people</p>
-          <% } else { %>
-          <p class="card-servings"><%= food.amount %> <%= food.matter %></p>
-          <% } %>
-        </div>
-        <div class="card-button"><button>Request food</button></div>
+        <form action="/requestFood" method="POST">
+          <div class="card-img">
+            <img src="<%= food.image %>" alt="Food..." />
+          </div>
+          <div class="card-content">
+            <% if (food.type === 'veg') { %>
+            <img src="./images/veg.svg" alt="Vegetarian" />
+            <% } else { %>
+            <img src="./images/non-veg.svg" alt="Non Vegetarian" />
+            <% } %>
+            <p class="card-category"><%= food.category %></p>
+            <h2><%= food.name %></h2>
+            <% if (food.feedAbout) { %>
+            <p class="card-servings"><%= food.feedAbout %> people</p>
+            <% } else { %>
+            <p class="card-servings"><%= food.amount %> <%= food.matter %></p>
+            <% } %>
+          </div>
+          <input type="hidden" name="currFood" value="<%= food._id %>" />
+
+          <div class="card-button"><button>Request food</button></div>
+        </form>
       </div>
       <% }) %> <% } else { %>
       <p>No food available at a moment. Kindly check after sometime.</p>

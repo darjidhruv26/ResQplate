@@ -10,7 +10,6 @@ const multer = require("multer");
 const User = require("./model/user");
 require('dotenv').config();
 
-
 const MONGODB_URL =process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
@@ -39,7 +38,7 @@ app.use(
     saveUninitialized: true,
     store: store,
     cookie: {
-      expires: 600000,
+      expires: 6000000,
     },
   })
 );

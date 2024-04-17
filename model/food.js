@@ -42,6 +42,19 @@ const foodSchema = new Schema({
   expiresTime: {
     type: String,
   },
+
+  foodRequest: [
+    {
+      requestedUserId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      isAccepted: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Food", foodSchema);

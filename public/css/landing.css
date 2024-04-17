@@ -26,6 +26,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 #main {
   display: flex;
 }

@@ -34,6 +34,8 @@
         userLat = position.coords.latitude;
         userLng = position.coords.longitude;
         console.log(userLat, userLng);
+        localStorage.setItem("userLat", userLat);
+        localStorage.setItem("userLng", userLng);
         getCountryCityInfo(userLat, userLng);
       }
 

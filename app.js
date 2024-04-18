@@ -14,7 +14,7 @@ const MONGODB_URL =process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
 const app = express();
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");  
 
 const authRoutes = require("./routes/auth");
 const needyRoutes = require("./routes/needy");

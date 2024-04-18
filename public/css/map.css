@@ -1,0 +1,203 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+.logo img {
+  margin: 16px auto 16px 96px;
+  height: 32px !important;
+}
+
+.request-contnet {
+  display: flex;
+  gap: 24px;
+}
+
+.card {
+  margin-top: 50px;
+  margin-left: 96px;
+  width: 612px;
+}
+
+.card img {
+  width: 100%;
+  height: 343px;
+}
+
+.card-content {
+  width: 100%;
+  position: relative;
+  padding: 16px 0;
+  padding-bottom: 24px;
+}
+.card-content img {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 16px;
+  right: 0;
+}
+.card-content .card-category {
+  color: #7a7d7f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card-content h2 {
+  color: #21272a;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.card-content .card-servings {
+  color: #898f90;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 8px;
+}
+
+.card-message p {
+  color: #2e8632;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.map-cotainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  width: 50%;
+}
+
+.main-map {
+  background-color: red;
+  height: 400px;
+}
+
+.location-aceess {
+  background-color: #00505c;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 16px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 32px;
+}
+
+.map-header {
+  margin-top: 16px;
+  font-size: 26px;
+  font-weight: 700;
+}
+.map-name {
+  margin-top: 14px;
+  color: #7a7d7f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.map-mobile {
+  color: #000;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  border-radius: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  padding: 14px 24px;
+}
+
+.actions button:hover {
+  opacity: 0.8;
+}
+
+.actions .yes {
+  background-color: rgb(73, 149, 76);
+  color: white;
+}
+
+.actions .no {
+  background-color: rgb(233, 236, 236);
+  color: rgb(76, 86, 87);
+}
+
+@media screen and (max-width: 487px) {
+  .logo {
+    margin: auto;
+  }
+  .logo img {
+    margin-top: 16px;
+    height: 32px;
+  }
+  .request-contnet {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100vw;
+  }
+  .card {
+    padding: 8px 16px;
+    margin: 0;
+    width: 100%;
+  }
+
+  .card img {
+    width: 100%;
+    height: 217px;
+  }
+  .card-content {
+    padding: 0;
+  }
+  .card-content img {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 16px;
+    right: 0;
+  }
+  .card-content .card-category {
+    font-size: 12px;
+  }
+  .card-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .card-content .card-servings {
+    font-weight: 500;
+  }
+  .card-message p {
+    margin-top: 16px;
+  }
+
+  .map-cotainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 100vw;
+    padding: 0 16px;
+  }
+  .map-cotainer img {
+    width: 100%;
+  }
+  .location-aceess {
+    width: 100%;
+  }
+}
+

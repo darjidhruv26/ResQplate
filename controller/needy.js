@@ -26,6 +26,33 @@ exports.getHomepage = async (req, res, next) => {
   });
 };
 
+exports.postGetHomepage = async (req, res, next) => {
+  const { yes, no, foodId } = req.body;
+  const loggedInUserId = req.session.user._id;
+
+  try {
+    if (yes) {
+      const food = await Food.findById(foodId);
+      if (!food) {
+        return res.redirect("/needy");
+      }
+
+      food.foodRequest = food.foodRequest.filter(
+        request => request.requestedUserId.toString() !== loggedInUserId
+      );
+
+      await food.save();
+      return res.redirect("/needy");
+    }
+
+    if (no) {
+      return res.redirect("/needy");
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+
 exports.getRequestFood = (req, res, next) => {
   const userId = req.session.user._id;
   res.render("needy/requestFood", {
@@ -41,15 +68,12 @@ exports.postRequestFood = async (req, res, next) => {
 
     const currentFoodId = req.body.currFood;
 
-    // Find the food document
     const foodData = await Food.findById(requestedFoodId);
 
-    // Check if userId already exists in foodRequest array
     const userExistsInRequest = foodData.foodRequest.some(
       request => request.requestedUserId.toString() === userId.toString()
     );
 
-    // If userId already exists, handle accordingly
     if (userExistsInRequest) {
       return res.render("needy/requestFood", {
         pageTitle: "Requested Food",
@@ -58,7 +82,6 @@ exports.postRequestFood = async (req, res, next) => {
       });
     }
 
-    // If userId does not exist, push requestObject
     const requestObject = {
       requestedUserId: userId,
       isAccepted: false,
@@ -84,10 +107,6 @@ exports.postRequestFood = async (req, res, next) => {
   }
 };
 
-// exports.getRequestAccept = (req, res, next) => {
-//   res.redirect("/requestAccept");
-// };
-
 exports.postRequestAccept = async (req, res, next) => {
   const userId = req.session.user._id;
   const foodId = req.body.foodId;
@@ -102,6 +121,30 @@ exports.postRequestAccept = async (req, res, next) => {
       return food.requestedUserId;
     });
     res.render("needy/accepted", { isAccept, foodData });
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+exports.getFoodReceived = (req, res, next) => {
+  res.render("needy/map", {
+    pageTitle: "Received Food",
+    foodData: [],
+  });
+};
+
+exports.postFoodReceived = async (req, res, next) => {
+  try {
+    const { foodId } = req.body;
+    const foodData = await Food.findById(foodId);
+
+    const { businessName } = await User.findById(foodData.foodPublisher);
+
+    res.render("needy/map", {
+      pageTitle: "Received Food",
+      foodData,
+      businessName,
+    });
   } catch (err) {
     throw new Error(err.message);
   }

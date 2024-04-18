@@ -14,7 +14,7 @@
   <body>
     <div id="navbar">
       <a href="/needy"><img src="./images/Vector(1).svg" alt="Logo..." /></a>
-      <form>
+      <form method="post" action="/logout">
         <input type="image" src="./images/power.svg" alt="Submit" />
       </form>
     </div>
@@ -116,7 +116,10 @@
           consuming.
         </p>
         <div class="modal-button">
-          <button onClick="iagree()">I agree</button>
+          <form method="POST" action="/foodReceived">
+            <input type="hidden" name="foodId" value="<%= foodData.id %>">
+            <button onClick="iagree()">I agree</button>
+          </form>
         </div>
       </div>
     </div>

@@ -1,6 +1,12 @@
 const User = require("../model/user");
 const Food = require("../model/food");
 
+const accountSid = "AC90904b5a199ff0066fc00c6755a5ef8e";
+const authToken = "9a7142961afd24237f803e5d2b658c26";
+const twilioPhoneNumber = "+13344873838";
+
+const twilio = require("twilio")(accountSid, authToken);
+
 exports.getSubType = (req, res, next) => {
   res.render("donator/donator_type", {
     pageTitle: "Donater type",
@@ -216,11 +222,38 @@ exports.postFoodRequest = async (req, res, next) => {
     );
 
     if (updatedFood) {
-      res.redirect("/acceptedRequest");
+      const userId = updatedFood.foodRequest[0].requestedUserId;
+      const message = "Your food request has been accepted. Enjoy!";
+
+      const user = await User.findById(userId);
+
+      if (user) {
+        try {
+          const userMobileNumber = `+91${user.mobileno}`;
+
+          const sentMessage = await twilio.messages.create({
+            body: message,
+            from: twilioPhoneNumber,
+            to: userMobileNumber,
+          });
+
+          console.log("SMS sent:", sentMessage.sid);
+        } catch (error) {
+          console.error("Error sending SMS:", error);
+          res.status(500).send("Failed to send SMS");
+          return;
+        }
+      } else {
+        throw new Error("User not found.");
+      }
+    } else {
+      throw new Error("Failed to update food request.");
     }
   } catch (err) {
-    throw new Error(err.message);
+    next(err);
+    return;
   }
+  return res.redirect("/acceptedRequest");
 };
 
 exports.getAcceptedRequest = async (req, res, next) => {
@@ -253,3 +286,5 @@ exports.getAcceptedRequest = async (req, res, next) => {
     throw new Error(err.message);
   }
 };
+
+// W4ACCH3JWZLB18FGF5JLRKQC

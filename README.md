@@ -10,3 +10,48 @@ Food waste is a major problem in the world, with at least one third of global fo
 # Project Architecture
 
 ![ResQplate](https://github.com/darjidhruv26/ResQplate/assets/90086813/15794c48-5d95-485d-bef5-7338d1678c9e)
+
+
+- NGINX server Config
+
+```
+sudo systemctl start nginx
+```
+
+```
+cd /etc/nginx/conf.d/
+```
+
+```
+sudo vi example.conf
+```
+
+```
+server {
+    listen       80;
+    server_name  13.127.94.52;
+
+     location / {
+        proxy_pass http://localhost:3000; #whatever port your app runs on
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+
+```
+
+```
+# Check NGINX config
+sudo nginx -t
+
+# Restart NGINX
+sudo nginx -s reload
+```

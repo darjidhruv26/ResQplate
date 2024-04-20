@@ -1,0 +1,229 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px;
+}
+#navbar input[type="image"] {
+  width: 32px;
+  height: 32px;
+}
+
+#form {
+  flex-grow: 1;
+  width: 456px;
+  margin: 39px auto 0 auto;
+  border-radius: 16px;
+  box-shadow: 0px 4px 42px 0px rgba(0, 0, 0, 0.14);
+  padding: 48px;
+}
+
+#form form {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 28px;
+}
+
+h2 {
+  margin-top: 64px;
+  font-size: 20px;
+  font-weight: 700;
+}
+#form label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+#form input,
+#form select {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 6px;
+  color: #898f90;
+  border: 1px solid #dee2e3;
+  background: #f5f5f5;
+  margin-top: 5px;
+}
+
+#form form input::placeholder {
+  color: #859293;
+}
+
+#form form input:active {
+  color: #859293;
+  outline: none;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  outline: none;
+  color: #859293;
+}
+
+#form form input:focus {
+  color: #262b2c;
+  outline: none;
+}
+
+#form #foodname {
+  display: flex;
+  flex-direction: column;
+}
+#form #foodname input {
+  margin-top: 5px;
+}
+
+#form #foodcategory {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+#form #foodType {
+  display: flex;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+#form #foodType > div {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dee2e3;
+  background-color: #f5f5f5;
+  padding: 14px;
+  border-radius: 6px;
+  width: 50%;
+  cursor: pointer;
+}
+
+#form #foodType input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+
+#form #foodType > div label {
+  display: flex;
+  align-items: center;
+  color: #121414;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+#form #foodType > div > label img {
+  margin-right: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+#form #foodAmount {
+  margin-top: 8px;
+  display: flex;
+  gap: 24px;
+}
+
+#form #foodAmount div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+#form #foodAmount input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+#form #foodAmount label {
+  color: #121414;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+#form #foodBreif {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+#form #foodBreif > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#form #foodBreif #foodNameFields {
+  width: 20%;
+}
+
+#form #foodBreif #foodAmountFields {
+  width: 40%;
+}
+
+#form #foodBreif #foodAmountFields input {
+  width: 100%;
+}
+
+#form #foodBreif #foodSelect {
+  width: 50%;
+}
+
+#form #foodExpireTime {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+#form input[type="submit"] {
+  background-color: var(--button-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  padding: 15px 16px;
+  margin-top: 28px;
+  cursor: pointer;
+}
+#form input[type="submit"]:hover {
+  background-color: var(--button-primary-hover);
+}
+
+@media screen and (max-width: 487px) {
+  #navbar {
+    padding: 16px;
+  }
+  #form {
+    box-shadow: none;
+    width: 100%;
+  }
+  #form {
+    padding: 0;
+    margin: 47px auto 0 auto;
+  }
+  #form form {
+    padding: 0 16px;
+  }
+  h1 {
+    margin-bottom: 16px;
+  }
+  h2 {
+    margin-top: 56px;
+  }
+  #form #foodExpireTime {
+    margin-top: 56px;
+  }
+}

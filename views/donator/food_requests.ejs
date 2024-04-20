@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/landing.css" />
+    <link rel="stylesheet" href="css/food_requests.css" />
+    <title>Food Requests</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+    <div class="content">
+      <div class="tab-content">
+        <a href="/donations">My donations</a>
+        <a href="#" class="active-link">Food requests</a>
+        <a href="/acceptedRequest">Accepted requests</a>
+      </div>
+    </div>
+    <div class="main-content">
+      <% let hasPendingRequests = false; %> <% if (foodData.length > 0) { %> <%
+      foodData.forEach((food, index) => { %> <% if
+      (food.foodRequest[0].isAccepted === false) { %> <% hasPendingRequests =
+      true; %>
+      <div class="container">
+        <p><%= userDetails[index] %> has requested</p>
+        <div class="card">
+          <div class="header">
+            <p><%= food.name %></p>
+          </div>
+          <img src="<%= food.image %>" alt="food image" />
+        </div>
+        <form action="/foodRequest" method="post">
+          <input type="hidden" name="foodId" value="<%= food.id %>" />
+          <input type="submit" name="accept" value="Accept" />
+        </form>
+      </div>
+      <% } %> <% }) %> <% } %> <% if (!hasPendingRequests) { %>
+      <div class="nocontent-container">
+        <img src="images/ep_checked.svg" alt="Icon..." />
+        <p>No pending requests.</p>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

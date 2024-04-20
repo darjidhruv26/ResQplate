@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link rel="stylesheet" href="/css/donator.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+
+    <div class="content-container">
+      <h1>Tell us more about yourself</h1>
+      <form action="/donator" method="post">
+        <div>
+          <label for="businessname">Business name</label>
+          <input
+            type="text"
+            name="businessname"
+            id="bname"
+            placeholder="Enter name of your business"
+          />
+        </div>
+        <button type="submit">Next</button>
+      </form>
+    </div>
+  </body>
+</html>

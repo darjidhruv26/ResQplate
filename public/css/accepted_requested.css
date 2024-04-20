@@ -1,0 +1,271 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px;
+}
+#navbar input[type="image"] {
+  width: 32px;
+  height: 32px;
+}
+
+.active-link {
+  color: rgb(0, 80, 92);
+  background-color: rgb(158, 221, 240) !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-weight: 700;
+}
+
+.content {
+  margin: auto;
+  height: fit-content;
+}
+
+.content .tab-content {
+  margin: 15px auto;
+  background-color: rgb(245, 245, 245);
+  padding: 8px 0;
+  border-radius: 8px !important;
+}
+
+.content .tab-content a {
+  background-color: rgb(245, 245, 245);
+  text-decoration: none;
+  padding: 8px;
+  color: #111;
+  margin: 0;
+}
+.content .tab-content a:first-child {
+  border-radius: 8px 0 0 8px !important;
+}
+.content .tab-content a:last-child {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.section {
+  display: flex;
+  margin: auto;
+  margin-top: 16px;
+  width: 1300px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px;
+}
+
+.main-content button {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  height: 124px;
+  display: grid;
+  margin-bottom: 8px;
+}
+
+.main-content .active-button {
+  background-color: #f5fafa;
+  border: 2px solid #1298bb;
+}
+
+.main-content span {
+  grid-column: span 8;
+  text-align: left;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.main-content img {
+  margin-top: 10px;
+  width: 70px;
+}
+
+.main-content div {
+  margin: auto auto auto 0;
+  font-size: 18px;
+}
+
+.chat-content {
+  width: 50%;
+  height: 100%;
+  margin: auto;
+}
+
+.chat-info {
+  background-color: #f5fafa;
+  padding: 16px;
+}
+
+.chat-info h1 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.chat-info .with {
+  margin-top: 6px;
+  font-weight: 600;
+  color: rgb(138, 142, 143);
+}
+
+.chat-info .mobile {
+  margin-top: 4px;
+}
+
+.chat-display {
+  padding: 24px 8px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.chat-display::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-content .to {
+  padding: 10px;
+  border: none;
+  background-color: rgb(0, 80, 92);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  max-width: 450px;
+  align-self: flex-end;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.chat-content .from {
+  align-self: flex-start;
+  padding: 10px;
+  border: 1px solid #4cc0e0;
+  background-color: rgba(176, 228, 244, 0.5);
+  color: rgb(18, 20, 20);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  max-width: 450px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.nocontent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  padding-left: 0;
+}
+.nocontent-container p {
+  font-weight: 700;
+}
+
+form input[type="text"] {
+  border-radius: 6px;
+  border: 1px solid var(--input-border-color);
+  background: #f4f5f6;
+  padding: 14px;
+  margin: 8px;
+  font-size: 16px;
+  width: 97.8%;
+}
+
+form input::placeholder {
+  color: #859293;
+}
+form input:active {
+  color: #859293;
+  outline: none;
+}
+
+@media screen and (max-width: 487px) {
+  body {
+    width: 100%;
+  }
+  #navbar {
+    padding: 16px;
+  }
+  #navbar {
+    padding: 16px;
+  }
+
+  .content {
+    margin: auto;
+    width: 100%;
+  }
+
+  .content .tab-content {
+    margin: 8px auto;
+    background-color: rgb(245, 245, 245);
+    padding: 8px 0;
+    border-radius: 8px !important;
+  }
+
+  .content .tab-content a {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    padding: 8px;
+    color: #111;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .section {
+    display: block;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 0 50px;
+  }
+
+  .chat-content {
+    width: 100%;
+    margin-top: 0;
+    padding: 8px;
+  }
+
+  .chat-box {
+    height: 90vh;
+  }
+
+  .chat-content .to {
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    max-width: 200px;
+    line-height: 1.1;
+  }
+
+  .chat-content .from {
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    max-width: 200px;
+    line-height: 1.1;
+  }
+  .chat-box .chat-input {
+    position: fixed;
+    bottom: 0;
+  }
+}

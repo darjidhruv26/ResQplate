@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link rel="stylesheet" href="/css/donator_form.css" />
+    <title>DEMO</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+    <div id="form">
+      <form action="/food-form" method="post" enctype="multipart/form-data">
+        <h1>Enter food details</h1>
+        <div id="foodname">
+          <label for="image">Food image</label>
+          <input type="file" name="image" id="image" />
+          <label for="foodname">Enter name of food</label>
+          <input type="text" name="foodname" placeholder="Eg. Oranges" />
+        </div>
+        <div id="foodcategory">
+          <label for="foodcategory">Select the food category</label>
+          <select name="foodcategory">
+            <option value="" selected style="display: none"></option>
+            <option value="Cereals">Cereals</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Vegetables and Fruits">Vegetables and Fruits</option>
+            <option value="Cooked Food">Cooked Food</option>
+          </select>
+        </div>
+        <div id="foodType">
+          <div>
+            <input type="radio" name="foodType" value="veg" />
+            <label><img src="./images/veg.svg" alt="Veg" />Veg</label>
+          </div>
+          <div>
+            <input type="radio" name="foodType" value="non-veg" />
+            <label
+              ><img src="./images/non-veg.svg" alt="Non-Veg" />Non Veg</label
+            >
+          </div>
+        </div>
+        <h2>Exact food amount</h2>
+        <p>Do you know the exact food amount Eg. kg,ml</p>
+        <div id="foodAmount">
+          <div>
+            <input
+              type="radio"
+              name="foodAmount"
+              value="yes"
+              onclick="showAmountFields()"
+              checked
+            />
+            <label>Yes</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="foodAmount"
+              value="no"
+              onclick="showFoodName()"
+            />
+            <label>No</label>
+          </div>
+        </div>
+        <div id="foodBreif">
+          <div id="foodNameFields" style="display: none">
+            <label for="foodAmountDigit">Feeds about</label>
+            <input
+              type="text"
+              name="foodAmountDigit"
+              placeholder="Eg. 20 people"
+            />
+          </div>
+          <div id="foodAmountFields">
+            <label for="foodAmountNo">Enter Quantity</label>
+            <input type="text" name="foodAmountNo" placeholder="Eg. 52" />
+          </div>
+          <div id="foodSelect">
+            <label for="foodMeasure">Weight or Liquid Measure</label>
+            <select name="foodMeasure">
+              <option value="" selected style="display: none"></option>
+              <option value="ml">ml</option>
+              <option value="kg">kg</option>
+            </select>
+          </div>
+        </div>
+        <div id="foodExpireTime">
+          <label for="foodExpireTime">Approx. time before food expires</label>
+          <select name="foodExpireTime">
+            <option value="" selected style="display: none"></option>
+            <option value="1 hour">1 Hour</option>
+            <option value="2 hour">2 Hour</option>
+            <option value="3 hour">3 Hour</option>
+            <option value="morehour">More than 3 hour</option>
+          </select>
+        </div>
+        <input type="submit" value="Continue" />
+      </form>
+    </div>
+    <script>
+      function showFoodName() {
+        document.getElementById("foodNameFields").style.display = "block";
+        document.getElementById("foodAmountFields").style.display = "none";
+        document.getElementById("foodSelect").style.display = "none";
+      }
+
+      function showAmountFields() {
+        document.getElementById("foodAmountFields").style.display = "block";
+        document.getElementById("foodNameFields").style.display = "none";
+        document.getElementById("foodSelect").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

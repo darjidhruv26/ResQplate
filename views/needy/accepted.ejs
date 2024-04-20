@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/landing.css" />
+    <link rel="stylesheet" href="css/needy_card_accepted.css" />
+    <!-- <link rel="stylesheet" href="css/needy_card_open.css" /> -->
+
+    <script
+      src="https://kit.fontawesome.com/f320fe6294.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Requested Accepted</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/needy"><img src="./images/Vector(1).svg" alt="Logo..." /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+    <div class="page-content">
+      <div class="content">
+        <div class="card">
+          <img src="<%= foodData.image %>" alt="Food..." />
+          <div class="card-content">
+            <img src="./images/veg.svg" alt="Vegetarian" />
+            <p class="card-category"><%= foodData.category %></p>
+            <h2><%= foodData.name %></h2>
+            <% if (foodData.feedAbout) { %>
+            <p class="card-servings"><%= foodData.feedAbout %> people</p>
+            <% } else { %>
+            <p class="card-servings">
+              <%= foodData.amount %> <%= foodData.matter %>
+            </p>
+            <% } %> <% if (isAccept === true) { %>
+            <p>
+              <span><img src="./images/green-tick.svg" alt="" /></span>
+              Request accepted
+            </p>
+            <% } else { %>
+            <div class="card-button">
+              <button>
+                <img src="images/process.svg" alt="" />&nbsp;Processing request
+              </button>
+            </div>
+            <% } %>
+          </div>
+          <% if (isAccept === true) { %>
+          <div class="card-button">
+            <button id="myBtn">Get address</button>
+          </div>
+          <% }%>
+          <div class="hidden card-chat-button">
+            <button onClick="displayChat()">Chat</button>
+          </div>
+        </div>
+      </div>
+      <% if (isAccept === true) { %>
+      <div class="chat-content">
+        <i class="fas fa-arrow-left hidden" onClick="hideChat()"></i>
+        <div class="chat-info">
+          <h1>chat</h1>
+          <p class="restro">Charmi restaurant</p>
+          <p class="with">Meet Dave</p>
+          <p class="mobile">9852730435</p>
+        </div>
+        <div class="chat-box">
+          <div class="chat-display">
+            <div class="to">
+              Hello this is message to thank you for your help Yagnik Help Hello
+              this is m k our hel essage to you for y thank you for your e to
+              thanp Yagnik H help Yagnik Help Hello this is mes sagelp
+            </div>
+            <div class="from">
+              You ca Yagnik Help Hello this is mes sagelp if you don't pe addr
+              find thn callyour e to thanp Yagnik H heless They
+            </div>
+            <div class="to">
+              Hello this is message to thank you for your help Yagnik Help
+            </div>
+            <div class="to">
+              Hello this is message to thank you for your help Yagnik Help
+            </div>
+            <div class="from">
+              You can call if you don't find the address They
+            </div>
+
+            <div class="from">
+              You can call if you don't find the address They
+            </div>
+            <div class="to">
+              Hello this is message to thank you for your help Yagnik Help
+            </div>
+            <div class="from">You can call if you don't find the address</div>
+            <div class="from">You can call if you don't find the address</div>
+            <div></div>
+          </div>
+          <form class="chat-inupt">
+            <input
+              type="text"
+              name="businessname"
+              id="bname"
+              placeholder="Type your message here"
+            />
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="overlay"></div>
+      <div class="modal-content">
+        <img src="./images/warning.svg" alt="" />
+        <p>
+          This message provides a clear and succinct warning to recipients about
+          the potential for expired or spoiled food items and emphasizes the
+          importance of checking expiration dates and condition of food before
+          consuming.
+        </p>
+        <div class="modal-button">
+          <form method="POST" action="/foodReceived">
+            <input type="hidden" name="foodId" value="<%= foodData.id %>" />
+            <button onClick="iagree()">I agree</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      function displayChat() {
+        const chatContent = document.querySelector(".chat-content");
+        const content = document.querySelector(".content");
+        chatContent.style.display = "block";
+        content.style.display = "none";
+      }
+      function hideChat() {
+        const chatContent = document.querySelector(".chat-content");
+        const content = document.querySelector(".content");
+        chatContent.style.display = "none";
+        content.style.display = "block";
+      }
+      function iagree() {
+        console.log("i agree");
+      }
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      var overlay = document.querySelector(".overlay");
+
+      // When the user clicks on the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      overlay.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

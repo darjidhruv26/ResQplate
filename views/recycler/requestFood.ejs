@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css//landing.css" />
+    <link rel="stylesheet" href="css/needy_card_open.css" />
+    <link rel="stylesheet" href="css/recycle_card_open.css" />
+
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/needy"><img src="./images/Vector(1).svg" alt="Logo..." /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+
+    <div class="card">
+      <img src="<%= foodData.image %>" alt="Food..." class="blur-img"/>
+      <div class="card-content">
+        <img src="./images/veg.svg" alt="Vegetarian" />
+        <p class="card-category"><%= foodData.category %></p>
+        <h2><%= foodData.name %></h2>
+        <% if (foodData.feedAbout) { %>
+        <p class="card-servings"><%= foodData.feedAbout %> people</p>
+        <% } else { %>
+        <p class="card-servings">
+          <%= foodData.amount %> <%= foodData.matter %>
+        </p>
+        <% } %>
+      </div>
+      <div class="card-button"><button>Requested</button></div>
+      <br />
+      <form method="post" action="/requestAccept">
+        <input type="hidden" name="foodId" value="<%= foodData.id %>" />
+        <div class="card-button1">
+          <button>Check Status</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

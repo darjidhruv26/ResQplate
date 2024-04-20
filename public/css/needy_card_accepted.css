@@ -1,0 +1,408 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px;
+}
+#navbar input[type="image"] {
+  width: 43px;
+  height: 43px;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.card {
+  width: 612px;
+}
+
+.card img {
+  width: 100%;
+  height: 343px;
+}
+
+.card-content {
+  width: 100%;
+  position: relative;
+  padding: 16px 0;
+  padding-bottom: 24px;
+}
+.card-content > img {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 16px;
+  right: 0;
+}
+.card-content .card-category {
+  color: #7a7d7f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card-content h2 {
+  color: #21272a;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.card-content .card-servings {
+  color: #898f90;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 8px;
+}
+
+.card-button button {
+  width: 100%;
+  padding: 15px 16px;
+  border: none;
+  background-color: rgb(0, 80, 92);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.card-chat-button button {
+  border: 1px solid rgb(0, 80, 92);
+  background-color: rgb(228, 247, 250);
+  color: rgb(0, 80, 92);
+}
+
+.card-content p:last-child {
+  margin-top: 16px;
+  color: rgb(46, 134, 50);
+  font-size: 26px;
+}
+
+.card-content p:last-child span img {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+
+.chat-content {
+  width: 50%;
+  height: 100%;
+}
+
+.chat-info {
+  background-color: #f5fafa;
+  padding: 16px;
+}
+
+.chat-info h1 {
+  margin-bottom: 28px;
+  font-weight: 700;
+  font-size: 36px;
+}
+.chat-info .restro {
+  font-weight: 700;
+  font-size: 22px;
+}
+.chat-info .with {
+  margin-top: 6px;
+  font-weight: 600;
+  color: rgb(138, 142, 143);
+}
+
+.chat-info .mobile {
+  margin-top: 4px;
+}
+
+.chat-display {
+  padding: 24px 8px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.chat-display::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-content .to {
+  padding: 10px;
+  border: none;
+  background-color: rgb(0, 80, 92);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  max-width: 450px;
+  align-self: flex-end;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.chat-content .from {
+  align-self: flex-start;
+  padding: 10px;
+  border: 1px solid #4cc0e0;
+  background-color: rgba(176, 228, 244, 0.5);
+  color: rgb(18, 20, 20);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  max-width: 450px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+form input {
+  border-radius: 6px;
+  border: 1px solid var(--input-border-color);
+  background: #f4f5f6;
+  padding: 14px;
+  margin: 8px;
+  font-size: 16px;
+  width: 97.8%;
+}
+
+form input::placeholder {
+  color: #859293;
+}
+form input:active {
+  color: #859293;
+  outline: none;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+.overlay {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Modal Content/Box */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+.modal-content img {
+  width: 120px;
+  height: 120px;
+}
+
+.modal-content p {
+  text-align: center;
+}
+
+.modal-button button {
+  width: 100% !important;
+  padding: 15px 16px;
+  margin-top: 25px;
+  border: none;
+  background-color: rgb(0, 80, 92);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.modal-button button:hover {
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 487px) {
+  #navbar {
+    padding: 16px;
+  }
+
+  .page-content {
+    display: block;
+    margin-top: 0px;
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    height: fit-content;
+    margin-top: 0;
+  }
+
+  .card {
+    width: 100%;
+    padding: 8px 16px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card img {
+    width: 100%;
+    height: 217px;
+    grid-column: span 2;
+  }
+
+  .card-content {
+    grid-column: span 2;
+  }
+
+  .card-content > img {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 16px;
+    right: 0;
+  }
+
+  .card-content .card-category {
+    font-size: 12px;
+  }
+  .card-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .card-content .card-servings {
+    font-weight: 500;
+  }
+  .card-chat-button {
+    display: block !important;
+  }
+
+  .card-chat-button button {
+    width: 98%;
+    padding: 15px 16px;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid rgb(0, 80, 92);
+    background-color: rgb(228, 247, 250);
+    color: rgb(0, 80, 92);
+  }
+
+  .fa-arrow-left {
+    display: block !important;
+    margin-bottom: 5px;
+    margin-left: 5px;
+  }
+
+  .chat-content {
+    display: none;
+    width: 100%;
+    margin-top: 0;
+    padding: 8px;
+  }
+
+  .chat-box {
+    height: 90vh;
+  }
+
+  .chat-content .to {
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    max-width: 200px;
+    line-height: 1.1;
+  }
+
+  .chat-content .from {
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    max-width: 200px;
+    line-height: 1.1;
+  }
+  .chat-box .chat-input {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .card-content p:last-child span img {
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+    padding-top: 7px;
+  }
+
+  .card-content p:last-child {
+    margin-top: 16px;
+    color: rgb(46, 134, 50);
+    font-size: 16px;
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fefefe;
+    margin: 50% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+  }
+}
+
+.yellow-color {
+  color: yellowgreen !important;
+}
+
+.card-button button {
+  width: 100%;
+  padding: 15px 16px;
+  border: none;
+  background-color: #dee2e3;
+  color: rgb(46, 134, 50);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+
+.card-button button img {
+  width: 20px;
+  height: 20px;
+}

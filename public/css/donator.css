@@ -1,0 +1,106 @@
+body {
+  height: 100vh;
+  position: relative;
+}
+
+.logo {
+  height: 32px;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start !important;
+  padding: 16px 96px;
+}
+
+#navbar input[type="image"] {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  margin-top: 0;
+  padding: 0;
+}
+
+form {
+  margin-top: 0 !important;
+}
+
+.content-container {
+  align-self: center;
+  margin: auto;
+  width: 560px;
+  margin-top: 200px;
+}
+
+form label {
+  color: #262b2c;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 48px;
+}
+
+.label-dark {
+  color: #262b2c;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 32px;
+}
+form {
+  margin-top: 64px;
+}
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+form input {
+  border-radius: 6px;
+  border: 1px solid var(--input-border-color);
+  background: #f4f5f6;
+  padding: 14px;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+form input::placeholder {
+  color: #859293;
+}
+form input:active {
+  color: #859293;
+  outline: none;
+}
+
+button {
+  margin-top: 48px;
+  background-color: var(--button-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  padding: 15px 16px;
+  width: 100%;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--button-primary-hover);
+}
+
+@media screen and (max-width: 487px) {
+  #navbar {
+    padding: 16px;
+  }
+  .content-container {
+    width: 100%;
+    margin-top: 100px;
+    padding: 0 16px;
+  }
+  form label {
+    margin-top: 32px;
+  }
+  button {
+    margin-top: 32px;
+  }
+}

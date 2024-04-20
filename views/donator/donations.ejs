@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/landing.css" />
+    <link rel="stylesheet" href="css/my_donation.css" />
+    <title><%= pageTitle %></title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+    <div class="content">
+      <div class="tab-content">
+        <a href="#" class="active-link">My donations</a>
+        <a href="/foodRequest">Food requests</a>
+        <a href="/acceptedRequest">Accepted requests</a>
+      </div>
+    </div>
+    <div class="main-content">
+      <% if (donations.length > 0) { %> <% donations.forEach(donation => { %>
+      <div class="card">
+        <div class="header">
+          <p><%= donation.name %></p>
+          <form method="post" action="/deleteFood">
+            <input type="hidden" name="foodId" value="<%= donation.id %>" />
+            <input type="image" src="./images/delete_icon.svg" alt="Delete" />
+          </form>
+        </div>
+        <img
+          src="<%= donation.image %>"
+          alt="food image"
+          width="300px"
+          height="220px"
+        />
+      </div>
+      <% }) %> <% } else { %>
+      <div class="nocontent-container">
+        <img src="images/frezer.svg" alt="Icon..." />
+        <p>You haven't donated any food.</p>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px;
+}
+#navbar input[type="image"] {
+  width: 32px;
+  height: 32px;
+}
+
+.active-link {
+  color: rgb(0, 80, 92);
+  background-color: rgb(158, 221, 240) !important;
+  font-weight: 700;
+  border-radius: 8px 0 0 8px;
+}
+
+.content {
+  margin: auto;
+  height: fit-content;
+}
+
+.content .tab-content {
+  margin: 15px auto;
+  background-color: rgb(245, 245, 245);
+  padding: 8px 0;
+  border-radius: 8px !important;
+}
+
+.content .tab-content a {
+  background-color: rgb(245, 245, 245);
+  text-decoration: none;
+  padding: 8px;
+  margin: 0;
+  color: #111;
+}
+.content .tab-content a:first-child {
+  border-radius: 8px 0 0 8px !important;
+}
+.content .tab-content a:last-child {
+  border-radius: 0 8px 8px 0 !important;
+}
+.main-content {
+  display: flex;
+  max-width: 1300px;
+  gap: 16px;
+  margin: auto;
+  margin-top: 16px;
+}
+.main-content .card {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 8px;
+  padding: 8px;
+  width: fit-content;
+}
+
+.main-content .card .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.main-content .card .header p {
+  font-weight: 700;
+}
+
+.nocontent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+}
+.nocontent-container p {
+  font-weight: 700;
+}
+@media screen and (max-width: 487px) {
+  #navbar {
+    padding: 16px;
+  }
+  .content {
+    margin: auto;
+    width: 100%;
+  }
+
+  .content .tab-content {
+    margin: 8px auto;
+    background-color: rgb(245, 245, 245);
+    padding: 8px 0;
+    border-radius: 8px !important;
+  }
+
+  .content .tab-content a {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    padding: 8px;
+    color: #111;
+    margin: 0;
+    font-size: 12px;
+  }
+  .main-content {
+    display: block;
+    width: 100%;
+    padding: 0 80px;
+  }
+  .main-content .card {
+    margin-bottom: 15px;
+  }
+}

@@ -74,16 +74,16 @@
             <div class="from">You can call if you don't find the address</div>
             <div></div>
           </div>
-          <form class="chat-inupt">
+          <form class="chat-inupt" id="message-form">
             <input
               type="text"
-              name="businessname"
-              id="bname"
+              name="chatinput"
+              id="input-message"
               placeholder="Type your message here"
             />
+            <input type="submit" value="Send" id="send-message" />
           </form>
         </div>
-        \
       </div>
       <% }) %> <% } else {%>
       <div class="nocontent-container">

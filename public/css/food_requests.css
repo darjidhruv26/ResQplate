@@ -59,6 +59,11 @@ body {
   margin-bottom: 10px;
   font-weight: 700;
 }
+.container img {
+  max-width: 350px;
+  height: 250px;
+}
+
 .main-content .card {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 8px;

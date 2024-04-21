@@ -21,6 +21,11 @@ phases:
     commands:
       - npm install
       - echo "dependencies installed"
+  Snyk security scan:
+     commands:
+      - sudo npm install -g snyk
+      - snyk auth
+      - snyk --version    
   build:
     commands:
       - docker build . -t dhruvdarji123/resqplate-app-prod:latest --build-arg MONGODB_URL_PARAM=$KEY --build-arg ACCOUNT_SID_PARAM=$SID --build-arg AUTH_TOKEN_PARAM=$TOKEN --build-arg TWILIO_PHONE_NUMBER_PARAM=$NUMBER

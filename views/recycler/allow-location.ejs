@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link rel="stylesheet" href="/css/location.css" />
+  </head>
+  <body>
+    <div class="logo">
+      <img src="./images/Vector(1).svg" alt="Logo..." />
+    </div>
+    <div class="content-container">
+      <h1>Please allow location access</h1>
+      <p>We need your location to find the nearest food available</p>
+      <form id="locationForm" action="/allow-location" method="post">
+        <input id="userCity" type="hidden" name="city" value="" />
+      </form>
+    </div>
+    <script>
+      let userLat;
+      let userLng;
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      function showPosition(position) {
+        userLat = position.coords.latitude;
+        userLng = position.coords.longitude;
+        console.log(userLat, userLng);
+        localStorage.setItem("userLat", userLat);
+        localStorage.setItem("userLng", userLng);
+        getCountryCityInfo(userLat, userLng);
+      }
+
+      window.onload = getLocation;
+
+      function getCountryCityInfo(lat, lng) {
+        const inputEl = document.getElementById("userCity");
+        const API_KEY = "2f9ea21144b7438fa41dc7ae19882918";
+        const API_URL = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${API_KEY}`;
+
+        fetch(API_URL)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.results && data.results.length > 0) {
+              const result = data.results[0];
+              const city =
+                result.components.city ||
+                result.components.town ||
+                result.components.state ||
+                "Unknown";
+              console.log(city);
+              inputEl.value = city;
+              document.getElementById("locationForm").submit();
+            } else {
+              console.error("Location not found.");
+            }
+          })
+          .catch(error => {
+            console.error("Fetch error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

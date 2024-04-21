@@ -1,0 +1,20 @@
+a {
+  color: #859293;
+  margin-right: auto;
+  margin-top: 18px;
+}
+.success-message {
+  color: #099754;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 18px;
+}
+
+@media screen and (max-width: 487px) {
+  .content .content-form form {
+    margin-top: 32px !important;
+  }
+  .success-message {
+    margin-top: 16px;
+  }
+}

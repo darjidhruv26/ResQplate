@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link
+      rel="stylesheet"
+      href="/css/donator_two_button.css
+    "
+    />
+    <title>Donator</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+      <form method="post" action="/logout">
+        <input type="image" src="./images/power.svg" alt="Submit" />
+      </form>
+    </div>
+    <div id="buttons">
+      <form action="/dashboard" method="post">
+        <button type="submit" class="button">
+          <img src="./images/plus.svg" alt="Plus" />
+          <div>Donate</div>
+        </button>
+      </form>
+
+      <button type="button" class="button" id="showPage">
+        <img src="./images/donate_hand.svg" alt="Hand" />
+        <div>Donations & Food requests</div>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    document.getElementById("showPage").addEventListener("click", function () {
+      window.location.href = "/donations";
+    });
+  </script>
+</html>

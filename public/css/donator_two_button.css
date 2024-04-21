@@ -1,0 +1,66 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px;
+}
+#navbar input[type="image"] {
+  width: 32px;
+  height: 32px;
+}
+
+#buttons {
+  flex-grow: 1;
+  padding: 48px 96px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+#buttons button img {
+  width: 32px;
+  height: 32px;
+  margin: auto;
+}
+
+button {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  padding: 16px;
+  background-color: #f5fafa;
+  border: 1px solid #1298bb;
+  cursor: pointer;
+  height: 84px;
+}
+
+button div {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: auto;
+  margin-top: 2px;
+  width: fit-content;
+}
+
+@media screen and (max-width: 487px) {
+  #navbar {
+    padding: 16px;
+  }
+  #buttons {
+    flex-grow: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  form {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}

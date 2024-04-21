@@ -1,0 +1,81 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.logo img {
+  height: 32px;
+  margin-top: 16px;
+  margin-left: 96px;
+}
+.radio-button__container h1 {
+  margin-bottom: 24px;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 52.8px;
+  color: #262b2c;
+}
+.radio-button__container p {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.radio-button__container form button {
+  margin-top: 16px;
+  background-color: var(--button-primary);
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  padding: 15px 16px;
+  width: 100%;
+  cursor: pointer;
+}
+.radio-button__container form button:hover {
+  background-color: var(--button-primary-hover);
+}
+.radio-button__container {
+  flex-grow: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 445px;
+}
+.radio-button__custom {
+  margin: 5px 0;
+  width: 100%;
+  cursor: pointer;
+  padding: 17px;
+  border: 3px solid #dee2e3;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.radio-button__custom:hover {
+  background-color: #f5fafa;
+}
+.radio-button__custom:nth-child(4) {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 487px) {
+  .logo {
+    margin: auto;
+  }
+  .logo img {
+    margin: 16px auto 0 auto;
+  }
+  .radio-button__container h1 {
+    font-size: 34px;
+    line-height: normal;
+  }
+  .radio-button__container {
+    width: 100%;
+    padding: 0 16px;
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link rel="stylesheet" href="/css/onboarding.css" />
+  </head>
+  <body>
+    <div class="logo">
+      <img src="/images/Vector(1).svg" alt="Logo..." />
+    </div>
+    <input
+      type="radio"
+      id="banner1Radio"
+      name="bannerSelection"
+      value="needy"
+      style="display: none"
+    />
+    <input
+      type="radio"
+      id="banner2Radio"
+      name="bannerSelection"
+      value="donater"
+      style="display: none"
+    />
+    <input
+      type="radio"
+      id="banner3Radio"
+      name="bannerSelection"
+      value="recycler"
+      style="display: none"
+    />
+    <div class="radio-button__container">
+      <h1>Tell us more about yourself</h1>
+      <p>What are you looking for?</p>
+      <form action="/email-confirm" method="post">
+        <input type="hidden" name="userType" id="userTypeHidden" value="" />
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner1Radio')"
+          id="radioButton1"
+        >
+          <img src="/images/donate.svg" alt="Donate" />I am in need of food
+        </div>
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner2Radio')"
+          id="radioButton2"
+        >
+          <img src="/images/needy.svg" alt="Need" />I want to donate food
+        </div>
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner3Radio')"
+          id="radioButton3"
+        >
+          <img src="/images/recycle.svg" alt="Recycle" />I am interested in
+          recycling food waste
+        </div>
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+
+    <script>
+      function selectRadio(radioId) {
+        // Unselect all radio buttons
+        document
+          .querySelectorAll('input[name="bannerSelection"]')
+          .forEach(radio => (radio.checked = false));
+
+        // Select the clicked radio button
+        document.getElementById(radioId).checked = true;
+
+        // Get the selected value and send it to the backend (you need to implement the backend part)
+        var selectedValue = document.querySelector(
+          'input[name="bannerSelection"]:checked'
+        ).value;
+
+        document.getElementById("userTypeHidden").value = selectedValue;
+
+        updateBorder(selectedValue);
+
+        // Here you can send the 'selectedValue' to the backend using an AJAX request or any other method.
+        // Example:
+        // sendDataToBackend(selectedValue);
+        console.log("Selected Value: " + selectedValue);
+      }
+      function updateBorder(selectedValue) {
+        // Reset borders for all radio buttons
+        document
+          .querySelectorAll(".radio-button__custom")
+          .forEach(radioButton => {
+            radioButton.style.border = "3px solid #dee2e3";
+          });
+
+        // Set a different border for the selected radio button
+        if (selectedValue === "needy") {
+          document.getElementById("radioButton1").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        } else if (selectedValue === "donater") {
+          document.getElementById("radioButton2").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        } else if (selectedValue === "recycler") {
+          document.getElementById("radioButton3").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        }
+      }
+    </script>
+  </body>
+</html>

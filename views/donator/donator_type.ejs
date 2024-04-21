@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/landing.css" />
+    <link rel="stylesheet" href="/css/onboarding.css" />
+  </head>
+  <body>
+    <div class="logo">
+      <a href="/dashboard"
+        ><img src="./images/Vector(1).svg" alt="Logo..."
+      /></a>
+    </div>
+    <input
+      type="radio"
+      id="banner1Radio"
+      name="bannerSelection"
+      value="resturant_owner"
+      style="display: none"
+    />
+    <input
+      type="radio"
+      id="banner2Radio"
+      name="bannerSelection"
+      value="store_owner"
+      style="display: none"
+    />
+    <input
+      type="radio"
+      id="banner3Radio"
+      name="bannerSelection"
+      value="event_manager"
+      style="display: none"
+    />
+    <div class="radio-button__container">
+      <h1>Tell us more about yourself</h1>
+      <p>Which of the following describes you</p>
+      <form action="/donator-type" method="post">
+        <input id="donatorType" type="hidden" name="donatorType" value="" />
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner1Radio')"
+          id="radioButton1"
+        >
+          <img src="./images/resturant.svg" alt="Resturant" />I am a restaurants
+          manager/owner
+        </div>
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner2Radio')"
+          id="radioButton2"
+        >
+          <img src="./images/store.svg" alt="Store" />I am a mall/store manager
+        </div>
+        <div
+          class="radio-button__custom"
+          onclick="selectRadio('banner3Radio')"
+          id="radioButton3"
+        >
+          <img src="./images/event.svg" alt="Event" />I am a event manager
+        </div>
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+
+    <script>
+      const inputEl = document.getElementById("donatorType");
+      function selectRadio(radioId) {
+        document
+          .querySelectorAll('input[name="bannerSelection"]')
+          .forEach(radio => (radio.checked = false));
+
+        document.getElementById(radioId).checked = true;
+
+        var selectedValue = document.querySelector(
+          'input[name="bannerSelection"]:checked'
+        ).value;
+
+        updateBorder(selectedValue);
+
+        inputEl.value = selectedValue;
+        console.log("Selected Value: " + selectedValue);
+      }
+      function updateBorder(selectedValue) {
+        document
+          .querySelectorAll(".radio-button__custom")
+          .forEach(radioButton => {
+            radioButton.style.border = "3px solid #dee2e3";
+          });
+        if (selectedValue === "resturant_owner") {
+          document.getElementById("radioButton1").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        } else if (selectedValue === "store_owner") {
+          document.getElementById("radioButton2").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        } else if (selectedValue === "event_manager") {
+          document.getElementById("radioButton3").style.border =
+            "1.5px solid #007288";
+          document.getElementById("radioButton1").style.padding = "20px";
+        }
+      }
+    </script>
+  </body>
+</html>

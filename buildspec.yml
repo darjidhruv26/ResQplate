@@ -28,12 +28,7 @@ phases:
     commands:
       - echo "waiting right now"
       - docker login -u $USERNAME -p $PASSWORD
-      - docker push dhruvdarji123/resqplate-app:latest
-  Snyk security scan:
-     commands:
-      - sudo npm install -g snyk
-      - snyk auth
-      - snyk --version    
+      - docker push dhruvdarji123/resqplate-app:latest 
 artifacts:
   files:
     - '**/*'

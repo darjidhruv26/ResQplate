@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+  
+hooks:
+  AfterInstall:
+    - location: scriptsprod/start.sh
+      timeout: 300
+      runas: root
+      
+  ApplicationStop:
+    - location: scriptsprod/stop.sh
+      timeout: 300
+      runas: root

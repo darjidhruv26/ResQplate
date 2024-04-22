@@ -70,6 +70,17 @@ body {
 .main-content .card .header p {
   font-weight: 700;
 }
+
+.nocontent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+}
+.nocontent-container p {
+  font-weight: 700;
+}
 @media screen and (max-width: 487px) {
   #navbar {
     padding: 16px;

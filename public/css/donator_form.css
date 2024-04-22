@@ -166,11 +166,15 @@ input:focus::-webkit-input-placeholder {
 }
 
 #form #foodBreif #foodNameFields {
-  width: 40%;
+  width: 20%;
 }
 
 #form #foodBreif #foodAmountFields {
-  width: 60%;
+  width: 40%;
+}
+
+#form #foodBreif #foodAmountFields input {
+  width: 100%;
 }
 
 #form #foodBreif #foodSelect {

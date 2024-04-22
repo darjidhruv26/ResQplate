@@ -47,6 +47,7 @@
         </div>
       </div>
     </div>
+
     <div class="needy-container">
       <% if (foodData && foodData.length > 0) { %> <% foodData.forEach(food =>
       {%>
@@ -71,13 +72,22 @@
           </div>
           <input type="hidden" name="currFood" value="<%= food._id %>" />
 
+          <% if (requestedFoodUser) { %>
+          <div class="card-button"><button>Requested</button></div>
+
+          <% } else { %>
           <div class="card-button"><button>Request food</button></div>
+          <% } %>
         </form>
       </div>
       <% }) %> <% } else { %>
-      <p>No food available at a moment. Kindly check after sometime.</p>
+      <div class="nocontent-container">
+        <img src="images/frezer.svg" alt="Icon..." />
+        <p>No food available at a moment. Kindly check after sometime.</p>
+      </div>
       <% } %>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

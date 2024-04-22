@@ -26,16 +26,16 @@
       </div>
     </div>
     <div class="section">
+      <% if (foodData.length > 0) { %> <% foodData.forEach((food, index) => { %>
       <div class="main-content">
-        <% if (foodData.length > 0) { %> <% foodData.forEach((food, index) => {
-        %>
         <button type="button" class="active-button">
           <span class="header"><%= userDetails[index] %></span>
           <img src="<%= food.image %>" alt="food image" />
           <div><%= food.name %></div>
         </button>
-        <% }) %> <% } %>
       </div>
+      <% }) %> <% } %> <% if (foodData.length > 0) { %> <%
+      foodData.forEach((food, index) => { %>
       <div class="chat-content">
         <i class="fas fa-arrow-left hidden" onClick="hideChat()"></i>
         <div class="chat-info">
@@ -74,16 +74,23 @@
             <div class="from">You can call if you don't find the address</div>
             <div></div>
           </div>
-          <form class="chat-inupt">
+          <form class="chat-inupt" id="message-form">
             <input
               type="text"
-              name="businessname"
-              id="bname"
+              name="chatinput"
+              id="input-message"
               placeholder="Type your message here"
             />
+            <input type="submit" value="Send" id="send-message" />
           </form>
         </div>
       </div>
+      <% }) %> <% } else {%>
+      <div class="nocontent-container">
+        <img src="images/frezers.svg" alt="Icon..." />
+        <p>No request has been accepted yet.</p>
+      </div>
+      <% } %>
     </div>
   </body>
 </html>

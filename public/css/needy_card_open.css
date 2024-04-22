@@ -64,10 +64,19 @@ body {
   padding: 15px 16px;
   border: none;
   background-color: #dee2e3;
-  color: #4c5657;
+  color: rgb(46, 134, 50);
   font-size: 16px;
   font-weight: 600;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card-button button img {
+  width: 20px;
+  height: 20px;
 }
 
 .card-button1 button {

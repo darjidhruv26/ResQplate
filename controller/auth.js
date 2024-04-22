@@ -22,6 +22,7 @@ let userEmail;
 exports.getSignUpEmail = (req, res, next) => {
   res.render("auth/signup_email", {
     pageTitle: "Signup | Login",
+    errorMessage: "",
   });
 };
 
@@ -29,6 +30,7 @@ exports.getSignUpPassword = (req, res, next) => {
   res.render("auth/signup_password", {
     emailExists: true,
     email: userEmail,
+    errorMessage: "",
     pageTitle: "Onboarding",
   });
 };
@@ -44,6 +46,7 @@ exports.postSignUpPassword = async (req, res, next) => {
       emailExists: !!user,
       email,
       pageTitle: "Signup",
+      errorMessage: "",
     });
   } catch (err) {
     console.error(err);
@@ -155,7 +158,12 @@ exports.postLogin = async (req, res, next) => {
       return res.redirect(redirectPage);
     } else {
       console.log("Password is not matched");
-      return res.redirect("/signup_password");
+      return res.render("auth/signup_password", {
+        emailExists: true,
+        email: userEmail,
+        pageTitle: "Onboarding",
+        errorMessage: "Password is not matched",
+      });
     }
   } catch (err) {
     console.error("Error:", err);

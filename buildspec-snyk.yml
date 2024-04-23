@@ -33,10 +33,10 @@ phases:
       - cat snyk-report.txt
 
   post_build:
-    # commands:
-    #   - echo "waiting right now"
-    #   - docker login -u $USERNAME -p $PASSWORD
-    #   - docker push dhruvdarji123/resqplate-app:latest
+    commands:
+      - echo "waiting right now"
+      - docker login -u $USERNAME -p $PASSWORD
+      - docker push dhruvdarji123/resqplate-app:latest
 
 artifacts:
   type: zip

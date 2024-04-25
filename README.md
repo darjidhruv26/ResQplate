@@ -15,6 +15,15 @@ Food waste is a major problem in the world, with at least one third of global fo
 - NGINX server Config
 
 ```
+  sudo yum update -y
+```
+
+```
+sudo yum install nginx
+```
+
+
+```
 sudo systemctl start nginx
 ```
 

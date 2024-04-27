@@ -146,46 +146,93 @@ Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchi
 `Amazon Route 53` is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises. In essence a DNS turns domain names into IP addresses, which allow browsers to get to websites and other internet resources.
 
 **Global Routing**: Route end users to your site reliably with globally dispersed Domain Name System (DNS) servers and automatic scaling.
+
 **Routing Policies**: Customise your DNS routing policies to reduce latency, improve application availability, and maintain compliance.
+
 **Readiness Checks**: Ensure that your resources across Availability Zones or Regions are continually audited for recovery readiness.
+
 **IP-Based Routing**: Fine-tune your DNS routing approach based on the Classless Inter-Domain Routing (CIDR) block that the query-originating IP address belongs to.
 
 ## Connecting Namecheap Domain to Route 53
+
 I would assume you have already purchased a domain from Namecheap or any other provider.
+
 ### Created a Hosted Zone in Route53 and Redirect NameCheap Domain to AWS Route53.
 
-[Reference form Namecheap to Route53](https://www.namecheap.com/support/knowledgebase/article.aspx/10371/2208/how-do-i-link-my-domain-to-amazon-web-services/)
+- In the Route 53 dashboard click on Create Hosted Zone and input your domain name in the first field then click Create Hosted Zone. Ensure you input the domain name without prefixes.
+  
+- `example.com`
 
-[Refernce blog](https://dev.to/1zyik/how-to-connect-your-namecheap-domain-to-route-53-2i8)
+![25](https://github.com/darjidhruv26/ResQplate/assets/90086813/5b513eb3-5104-430e-810f-f60aa9f93344)
 
-![route53 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/649f0a7f-25fb-459f-9a3d-7eac86bbbc02)
+- Next, navigate to your Namecheap dashboard and click manage on the domain name you wish to connect.
+IN Left Sidebar -> Click on `Domain List` -> Click on Domain
 
-Certificate Manager
-![cert1](https://github.com/darjidhruv26/ResQplate/assets/90086813/97dd2e67-2dde-460d-a406-f2770b85f201)
+- Click the dropdown on name servers and select custom DNS.
+
+- Go to Route53 hosted zone dashboard Click the dropdown on name servers and select custom DNS.
+  
+- [**Reference form Namecheap to Route53**](https://www.namecheap.com/support/knowledgebase/article.aspx/10371/2208/how-do-i-link-my-domain-to-amazon-web-services/)
+
+- [Refernce blog](https://dev.to/1zyik/how-to-connect-your-namecheap-domain-to-route-53-2i8)
+
+![14](https://github.com/darjidhruv26/ResQplate/assets/90086813/1042f560-baed-40c9-92f4-ceda1c24a569)
+
+
+## Certificate Manager
+
+AWS Certificate Manager (ACM) is a service that lets you easily provision, manage, and deploy public SSL certificates using AWS services.
+
+Before we begin, always make sure you are in the US-East-1 or North Virginia region! Because that’s where the edge location is and most of your cloud services will require that your certificates are installed on US-East-1 or North Virginia region.
+
+Then, press the Get Started button under the Provision Certificates section. Here, we can request a public certificate. We have to provide a domain name and any sub-domains of your domain.
+
+- we have to validate the ownership of this domain using one of two options, DNS validation or Email validation.
+
+- If you are using a DNS validation, which is a bit faster, you have to provide some DNS records.
+
+- The DNS provider, in this case, is Route 53, so we can simply hit the button called, “Create a record in Route 53.” It will automatically create the necessary DNS records for us. Similarly, we can do this for every domain.
+
+- After this step, if you go back to the Route 53 console and refresh, you can find a new CNAME entry.
+
+- Coming back to the ACM console, if the validation status is pending, it’s perfectly fine. After a few minutes, we should have an active status.
+
+- One more thing here to add is the name tags. Remember, in our serverless application codes, we added certificateName. We copy that name and edit the name tags with the name we put in the certificate name. That will set the certificate name for us.
+  
+![17](https://github.com/darjidhruv26/ResQplate/assets/90086813/ac6cbb4e-578e-4d6e-9c87-82ed7f230b43)
+
+- Created a Subdomain for production and map with load balancer public URL
 
 ![ditelce](https://github.com/darjidhruv26/ResQplate/assets/90086813/f0610fc1-e143-4f4b-8418-cd6b931380ec)
 
 ![route53 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/c367963f-d948-4f09-a9eb-4b7ccd9e51b4)
 
-# phase 5:
+# Phase 5: Application demo
+
 Application running
 
 ![apprunning 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/f0890567-f7fe-4988-8dc1-9e20c7ef7e11)
 
-SSL
+- SSL Certificate validete
+  
 ![https application](https://github.com/darjidhruv26/ResQplate/assets/90086813/667be417-296d-4224-9996-cfae47bf795c)
 
-location needy
+- Location assecc on the needy page
+
 ![location access](https://github.com/darjidhruv26/ResQplate/assets/90086813/4eaeff9c-90a0-49c2-9d19-41742ae268c3)
 
-needy 1
+- Needy page for food request
+  
 ![apprunning 1needy location](https://github.com/darjidhruv26/ResQplate/assets/90086813/47195db4-1731-4e99-a888-114ea75c2b06)
 
-donator part
+- Sign-up/LodIn in Donatore part
+  
 ![apprunning 2 dashboard](https://github.com/darjidhruv26/ResQplate/assets/90086813/c887f544-a25e-49fb-b01c-00af6a1b0d0c)
 
-donation form
+- In the Donatore food form
+
 ![apprunning 2 foodform](https://github.com/darjidhruv26/ResQplate/assets/90086813/c568a69a-b90b-45ad-937c-19cf552be121)
 
-donation 2
+- On the Donatore food accepted page
+  
 ![apprunning 2 donation](https://github.com/darjidhruv26/ResQplate/assets/90086813/c6262c3f-3901-469f-9fa7-8eaa5657bed2)

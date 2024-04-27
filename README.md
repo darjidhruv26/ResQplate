@@ -2,18 +2,20 @@
 
 Food waste is a major problem in the world, with at least one-third of global food supplies being wasted or lost around the globe every year.
 
-## PPT
+# Project PPT
 
-[Project PPT](https://docs.google.com/presentation/d/11d5q84kI6K0PLBKdnCNFAVB9cXVPq0TqkiSCyG-IBe8/edit?usp=sharing)
+[<b>Project PPT</b>](https://docs.google.com/presentation/d/11d5q84kI6K0PLBKdnCNFAVB9cXVPq0TqkiSCyG-IBe8/edit?usp=sharing)
 
-
+--------------------------------------------------------------------------------------------------------------
 # Project Architecture
 
 ![Resqplate-System Architect drawio](https://github.com/darjidhruv26/ResQplate/assets/90086813/e3ff2f79-6538-46d0-9508-c6db5435f441)
 
+# Phase 1:
 
 ec2
 ![Ec2](https://github.com/darjidhruv26/ResQplate/assets/90086813/83ce01f6-9a8d-48bd-a948-c14b4edde581)
+
 
 - NGINX server Config
 ```
@@ -62,6 +64,8 @@ server {
 # Restart NGINX
 `sudo nginx -s reload`
 
+# Phase 2:
+
 Target Group
 
 ![targetgrp](https://github.com/darjidhruv26/ResQplate/assets/90086813/b7dbebdc-e2ad-4b9a-8469-e60ba522210c)
@@ -72,7 +76,7 @@ Load balancer
 
 ![lb 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/db96b28f-fbde-426f-8ee6-36e6fc8231f0)
 
-
+# Phase 3:
 
 BUilding CI/CD pipeline reference
 
@@ -103,7 +107,7 @@ code pipeline uat
 code pipeline prod
 ![prod1](https://github.com/darjidhruv26/ResQplate/assets/90086813/e6f984f3-afe9-4bf3-8376-281166ec7099)
 
-
+# Phase 4:
 Route53:
 ![route53 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/649f0a7f-25fb-459f-9a3d-7eac86bbbc02)
 
@@ -114,6 +118,7 @@ Certificate Manager
 
 ![route53 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/c367963f-d948-4f09-a9eb-4b7ccd9e51b4)
 
+# phase 5:
 Application running
 
 ![apprunning 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/f0890567-f7fe-4988-8dc1-9e20c7ef7e11)

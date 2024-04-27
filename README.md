@@ -4,7 +4,7 @@ Food waste is a major problem in the world, with at least one-third of global fo
 
 # Project PPT
 
-[<b>Project PPT</b>](https://docs.google.com/presentation/d/11d5q84kI6K0PLBKdnCNFAVB9cXVPq0TqkiSCyG-IBe8/edit?usp=sharing)
+[**Project PPT**](https://docs.google.com/presentation/d/11d5q84kI6K0PLBKdnCNFAVB9cXVPq0TqkiSCyG-IBe8/edit?usp=sharing)
 
 --------------------------------------------------------------------------------------------------------------
 # Project Architecture
@@ -78,7 +78,9 @@ server {
 
 # Phase 2: Set up Target group and Load Balancer
 
-## Target Group
+## Set up Target Group
+
+In `Amazon Web Services (AWS), a target group` is a logical collection of EC2 instances that a load balancer distributes workload to. A target group can contain instances with any kind of characteristics, and you can create different target groups for different types of requests.
 
 - Create Target Group
 - Target type is `Instance`
@@ -88,7 +90,9 @@ server {
 
 ![targetgrp](https://github.com/darjidhruv26/ResQplate/assets/90086813/b7dbebdc-e2ad-4b9a-8469-e60ba522210c)
 
-## Load balancer
+## Set up a Load balancer
+
+`Application Load Balancer` operates at the request level (layer 7), routing traffic to targets (EC2 instances, containers, IP addresses, and Lambda functions) based on the content of the request. Ideal for advanced load balancing of HTTP and HTTPS traffic, Application Load Balancer provides advanced request routing targeted at delivery of modern application architectures, including microservices and container-based applications. Application Load Balancer simplifies and improves the security of your application, by ensuring that the latest SSL/TLS ciphers and protocols are used at all times.
 
 - Create Load Balancer
 - Select `Application Load Balancer` and put all the details.
@@ -98,39 +102,62 @@ server {
 
 ![lb 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/db96b28f-fbde-426f-8ee6-36e6fc8231f0)
 
-# Phase 3:
+# Phase 3: Set up a CI/CD Pipeline using AWS Developer tools
 
-BUilding CI/CD pipeline reference
+## [CI/CD pipeline set-up reference](https://github.com/darjidhruv26/AWS-CICD-Pipeline?tab=readme-ov-file#create-ec2-instance)
 
-AWS Parameter Store
+### AWS Systems Manager Parameter Store
+Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchical storage for configuration data management and secrets management. 
 ![perameter](https://github.com/darjidhruv26/ResQplate/assets/90086813/2c700253-ab5c-4a6f-9b40-120444ff3273)
 
-- code pipeline
+### CodeBuild
+`AWS CodeBuild` is a fully managed build service in the cloud. CodeBuild compiles your source code, runs unit tests, and produces artefacts that are ready to deploy. 
+
+### CodeDeploy
+`AWS CodeDeploy` is a service that automates code deployments to any instance, including Amazon EC2 instances and instances running on-premises. AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during deployment, and handles the complexity of updating your applications.
+
+### CodePipeline
+`AWS CodePipeline `is a continuous delivery service you can use to model, visualize, and automate the steps required to release your software. You can quickly model and configure the different stages of a software release process. CodePipeline automates the steps required to release your software changes continuously.
+
 ![p0](https://github.com/darjidhruv26/ResQplate/assets/90086813/36edc15c-73a1-4537-b592-b3498f54db73)
 
-code pipeline 1
 ![p1](https://github.com/darjidhruv26/ResQplate/assets/90086813/c7e71f7b-f792-4c5a-980d-f372f990878a)
 
-code pipeline 2
 ![p2](https://github.com/darjidhruv26/ResQplate/assets/90086813/7068f8e2-6bd9-4719-bf0c-16bb234b0169)
 
-code pipeline 3
 ![p3](https://github.com/darjidhruv26/ResQplate/assets/90086813/d1e92748-1ba4-4757-994f-8bf9b9b06307)
 
-build list
+- CodeBuild build List
 ![1](https://github.com/darjidhruv26/ResQplate/assets/90086813/33487ece-c9af-41fb-9dce-d1ae3c0e38b5)
 
-code pipeline history
+- CodePipeline history
 ![ps1](https://github.com/darjidhruv26/ResQplate/assets/90086813/d0e3af3a-2594-43ef-8bd9-99f9138433f1)
 
-code pipeline uat
+### CodeDeploy UAT
+- Deploy application on User Acceptance Testing (UAT) environment.
 ![uat1](https://github.com/darjidhruv26/ResQplate/assets/90086813/d1fb9e1b-d4d1-499b-bee1-6cda5793cd0b)
 
-code pipeline prod
+### CodeDeploy Production
+- Deploy application on Production (Prod) environment.
 ![prod1](https://github.com/darjidhruv26/ResQplate/assets/90086813/e6f984f3-afe9-4bf3-8376-281166ec7099)
 
-# Phase 4:
-Route53:
+# Phase 4: Set up Route53 Hosted Zone
+
+`Amazon Route 53` is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises. In essence a DNS turns domain names into IP addresses, which allow browsers to get to websites and other internet resources.
+
+**Global Routing**: Route end users to your site reliably with globally dispersed Domain Name System (DNS) servers and automatic scaling.
+**Routing Policies**: Customise your DNS routing policies to reduce latency, improve application availability, and maintain compliance.
+**Readiness Checks**: Ensure that your resources across Availability Zones or Regions are continually audited for recovery readiness.
+**IP-Based Routing**: Fine-tune your DNS routing approach based on the Classless Inter-Domain Routing (CIDR) block that the query-originating IP address belongs to.
+
+## Connecting Namecheap Domain to Route 53
+I would assume you have already purchased a domain from Namecheap or any other provider.
+### Created a Hosted Zone in Route53 and Redirect NameCheap Domain to AWS Route53.
+
+[Reference form Namecheap to Route53](https://www.namecheap.com/support/knowledgebase/article.aspx/10371/2208/how-do-i-link-my-domain-to-amazon-web-services/)
+
+[Refernce blog](https://dev.to/1zyik/how-to-connect-your-namecheap-domain-to-route-53-2i8)
+
 ![route53 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/649f0a7f-25fb-459f-9a3d-7eac86bbbc02)
 
 Certificate Manager

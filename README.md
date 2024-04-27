@@ -11,37 +11,47 @@ Food waste is a major problem in the world, with at least one-third of global fo
 
 ![Resqplate-System Architect drawio](https://github.com/darjidhruv26/ResQplate/assets/90086813/e3ff2f79-6538-46d0-9508-c6db5435f441)
 
-# Phase 1:
+# Phase 1: Working on EC2 and Setup NGINX server
 
-ec2
+### Create an EC2 Instance using this [reference](https://github.com/darjidhruv26/AWS-CICD-Pipeline?tab=readme-ov-file#create-ec2-instance).
+
+- EC2 Instance type is `Amazon Linux` `t2-micro` 
 ![Ec2](https://github.com/darjidhruv26/ResQplate/assets/90086813/83ce01f6-9a8d-48bd-a948-c14b4edde581)
 
+### NGINX server Configuration
+----
+- Configure the NGINX server in all servers.
+- Following this command to install and configure NGINX.
 
-- NGINX server Config
+- Update the system using this command
 ```
   sudo yum update -y
 ```
 
+- Install NGINX using this command
 ```
 sudo yum install nginx
 ```
 
+- Start NGINX using this command
 ```
 sudo systemctl start nginx
 ```
 
+- Navigate to this directory for configuration
 ```
 cd /etc/nginx/conf.d/
 ```
-
+- create a new file called `example.conf`
 ```
 sudo vi example.conf
 ```
-
+- To set up a proxy and port mapping, you will need to copy the following code.
+- Replace 'your server name' with the name or IP address of your server and also port. 
 ```
 server {
     listen       80;
-    server_name  13.127.94.52;
+    server_name  13.127.94.52;<you_Server_name>
 
      location / {
         proxy_pass http://localhost:3000; #whatever port your app runs on
@@ -58,19 +68,31 @@ server {
     }
 }
 ```
-# Check NGINX config
-`sudo nginx -t`
+- Check NGINX config
 
-# Restart NGINX
-`sudo nginx -s reload`
+```sudo nginx -t```
 
-# Phase 2:
+- Restart NGINX
+  
+```sudo nginx -s reload```
 
-Target Group
+# Phase 2: Set up Target group and Load Balancer
+
+## Target Group
+
+- Create Target Group
+- Target type is `Instance`
+- give Target Group name and live as default
+- `Next` Select EC2 instances for a target group and Click on `Include as pending below`
+- Wait for `Health status pass` and click on Create
 
 ![targetgrp](https://github.com/darjidhruv26/ResQplate/assets/90086813/b7dbebdc-e2ad-4b9a-8469-e60ba522210c)
 
-Load balancer
+## Load balancer
+
+- Create Load Balancer
+- Select `Application Load Balancer` and put all the details.
+- Now for the temporary `Listeners and routing` section put Protocol `HTTP`, Prot `80`, and Target Group. 
 
 ![lb 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/9516023d-db22-4209-a713-eb2248aa32a5)
 

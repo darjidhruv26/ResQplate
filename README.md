@@ -1,6 +1,6 @@
 # ResQplate (Food Waste Management System)
 
-Food waste is a major problem in the world, with at least one third of global food supplies being wasted or lost around the globe every year.
+Food waste is a major problem in the world, with at least one-third of global food supplies being wasted or lost around the globe every year.
 
 ## PPT
 

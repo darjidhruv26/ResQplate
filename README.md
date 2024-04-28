@@ -9,7 +9,7 @@ Food waste is a major problem in the world, with at least one-third of global fo
 --------------------------------------------------------------------------------------------------------------
 # Project Architecture
 
-![Resqplate-System Architect drawio](https://github.com/darjidhruv26/ResQplate/assets/90086813/e3ff2f79-6538-46d0-9508-c6db5435f441)
+![Resqplate-System Architect drawio (1)](https://github.com/darjidhruv26/ResQplate/assets/90086813/989399a2-4960-4085-aa32-d06fdd50d8dd)
 
 # Phase 1: Working on EC2 and Setup NGINX server
 

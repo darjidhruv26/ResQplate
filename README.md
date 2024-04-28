@@ -223,7 +223,7 @@ Then, press the Get Started button under the Provision Certificates section. Her
 
 - Created a Subdomain for production and map with load balancer public URL
 
-![ditelce](https://github.com/darjidhruv26/ResQplate/assets/90086813/f0610fc1-e143-4f4b-8418-cd6b931380ec)
+![15](https://github.com/darjidhruv26/ResQplate/assets/90086813/f93143c9-b8c4-4313-8b42-7c394bb8b9f7)
 
 ### Update Load Balancer `Listeners and routing` part
 - Protocol `HTTPS` -> Port `443` -> Target Group

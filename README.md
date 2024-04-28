@@ -98,7 +98,7 @@ In `Amazon Web Services (AWS), a target group` is a logical collection of EC2 in
 - Select `Application Load Balancer` and put all the details.
 - Now for the temporary `Listeners and routing` section put Protocol `HTTP`, Prot `80`, and Target Group. 
 
-![lb 1](https://github.com/darjidhruv26/ResQplate/assets/90086813/9516023d-db22-4209-a713-eb2248aa32a5)
+![3](https://github.com/darjidhruv26/ResQplate/assets/90086813/d0d53385-db86-4a89-ae5f-230b85214b3f)
 
 ![lb 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/db96b28f-fbde-426f-8ee6-36e6fc8231f0)
 

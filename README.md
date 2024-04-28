@@ -100,7 +100,7 @@ In `Amazon Web Services (AWS), a target group` is a logical collection of EC2 in
 
 ![3](https://github.com/darjidhruv26/ResQplate/assets/90086813/d0d53385-db86-4a89-ae5f-230b85214b3f)
 
-![lb 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/db96b28f-fbde-426f-8ee6-36e6fc8231f0)
+![4](https://github.com/darjidhruv26/ResQplate/assets/90086813/645f7d03-3616-4813-9d8c-616ef3308f6f)
 
 # Phase 3: Set up a CI/CD Pipeline using AWS Developer tools
 

@@ -92,7 +92,7 @@ In `Amazon Web Services (AWS), a target group` is a logical collection of EC2 in
 
 ## Set up a Load balancer
 
-`Application Load Balancer` operates at the request level (layer 7), routing traffic to targets (EC2 instances, containers, IP addresses, and Lambda functions) based on the content of the request. Ideal for advanced load balancing of HTTP and HTTPS traffic, Application Load Balancer provides advanced request routing targeted at delivery of modern application architectures, including microservices and container-based applications. Application Load Balancer simplifies and improves the security of your application, by ensuring that the latest SSL/TLS ciphers and protocols are used at all times.
+`Application Load Balancer` operates at the request level (layer 7), routing traffic to targets (EC2 instances, containers, IP addresses, and Lambda functions) based on the content of the request. Ideal for advanced load balancing of HTTP and HTTPS traffic, Application Load Balancer provides advanced request routing targeted at delivery of modern application architectures, including microservices and container-based applications. Application Load Balancer simplifies and improves the security of your application, by ensuring that the latest SSL/TLS cyphers and protocols are used at all times.
 
 - Create Load Balancer
 - Select `Application Load Balancer` and put all the details.
@@ -107,7 +107,8 @@ In `Amazon Web Services (AWS), a target group` is a logical collection of EC2 in
 ## [CI/CD pipeline set-up reference](https://github.com/darjidhruv26/AWS-CICD-Pipeline?tab=readme-ov-file#create-ec2-instance)
 
 ### AWS Systems Manager Parameter Store
-Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchical storage for configuration data management and secrets management. 
+`Parameter Store`, a capability of AWS Systems Manager, provides secure, hierarchical storage for configuration data management and secrets management. 
+
 ![perameter](https://github.com/darjidhruv26/ResQplate/assets/90086813/2c700253-ab5c-4a6f-9b40-120444ff3273)
 
 ### CodeBuild
@@ -119,6 +120,21 @@ Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchi
 ### CodePipeline
 `AWS CodePipeline `is a continuous delivery service you can use to model, visualize, and automate the steps required to release your software. You can quickly model and configure the different stages of a software release process. CodePipeline automates the steps required to release your software changes continuously.
 
+### Git-Secret
+
+`Git-secret` is a tool to manage API secrets in source control -- but it doesn't have to be just API keys. This git extension allows you to encrypt/decrypt any files as you push/pull from source control.
+
+### Snyk 
+
+`Snyk` is a cloud-based security tool that helps developers find and fix vulnerabilities in their applications, containers, infrastructure as code, and open-source dependencies.
+
+- In this project, we scan an Application source code from GitHub and Container Images using **Snyk**.
+  
+[**Reference Docs from Snyk**](https://docs.snyk.io/integrate-with-snyk/snyk-ci-cd-integrations/aws-codepipeline-integration-by-adding-a-snyk-scan-stage)
+
+[**Reference Docs from Snyk to integrate with CodePipeline**](https://snyk.io/blog/automate-vulnerability-scanning-in-aws-codepipeline-with-snyk/)
+
+
 ![p0](https://github.com/darjidhruv26/ResQplate/assets/90086813/36edc15c-73a1-4537-b592-b3498f54db73)
 
 ![p1](https://github.com/darjidhruv26/ResQplate/assets/90086813/c7e71f7b-f792-4c5a-980d-f372f990878a)
@@ -128,28 +144,32 @@ Parameter Store, a capability of AWS Systems Manager, provides secure, hierarchi
 ![p3](https://github.com/darjidhruv26/ResQplate/assets/90086813/d1e92748-1ba4-4757-994f-8bf9b9b06307)
 
 - CodeBuild build List
+  
 ![1](https://github.com/darjidhruv26/ResQplate/assets/90086813/33487ece-c9af-41fb-9dce-d1ae3c0e38b5)
 
 - CodePipeline history
+  
 ![ps1](https://github.com/darjidhruv26/ResQplate/assets/90086813/d0e3af3a-2594-43ef-8bd9-99f9138433f1)
 
 ### CodeDeploy UAT
 - Deploy application on User Acceptance Testing (UAT) environment.
+  
 ![uat1](https://github.com/darjidhruv26/ResQplate/assets/90086813/d1fb9e1b-d4d1-499b-bee1-6cda5793cd0b)
 
 ### CodeDeploy Production
 - Deploy application on Production (Prod) environment.
+  
 ![prod1](https://github.com/darjidhruv26/ResQplate/assets/90086813/e6f984f3-afe9-4bf3-8376-281166ec7099)
 
 # Phase 4: Set up Route53 Hosted Zone
 
-`Amazon Route 53` is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises. In essence a DNS turns domain names into IP addresses, which allow browsers to get to websites and other internet resources.
+`Amazon Route 53` is a highly available and scalable Domain Name System (DNS) web service. Route 53 connects user requests to internet applications running on AWS or on-premises. In essence, a DNS turns domain names into IP addresses, allowing browsers to access websites and other internet resources.
 
 **Global Routing**: Route end users to your site reliably with globally dispersed Domain Name System (DNS) servers and automatic scaling.
 
 **Routing Policies**: Customise your DNS routing policies to reduce latency, improve application availability, and maintain compliance.
 
-**Readiness Checks**: Ensure that your resources across Availability Zones or Regions are continually audited for recovery readiness.
+**Readiness Checks**: Ensure your resources across Availability Zones or Regions are continually audited for recovery readiness.
 
 **IP-Based Routing**: Fine-tune your DNS routing approach based on the Classless Inter-Domain Routing (CIDR) block that the query-originating IP address belongs to.
 
@@ -195,7 +215,7 @@ Then, press the Get Started button under the Provision Certificates section. Her
 
 - After this step, if you go back to the Route 53 console and refresh, you can find a new CNAME entry.
 
-- Coming back to the ACM console, if the validation status is pending, it’s perfectly fine. After a few minutes, we should have an active status.
+- Returning to the ACM console, it's perfectly fine if the validation status is pending. After a few minutes, we should have an active status.
 
 - One more thing here to add is the name tags. Remember, in our serverless application codes, we added certificateName. We copy that name and edit the name tags with the name we put in the certificate name. That will set the certificate name for us.
   
@@ -205,7 +225,11 @@ Then, press the Get Started button under the Provision Certificates section. Her
 
 ![ditelce](https://github.com/darjidhruv26/ResQplate/assets/90086813/f0610fc1-e143-4f4b-8418-cd6b931380ec)
 
-![route53 2](https://github.com/darjidhruv26/ResQplate/assets/90086813/c367963f-d948-4f09-a9eb-4b7ccd9e51b4)
+### Update Load Balancer `Listeners and routing` part
+- Protocol `HTTPS` -> Port `443` -> Target Group
+- Also, `Default SSL/TLS server certificate` -> From `ACM` -> Select from `AWS Certificate Manager`
+
+![16](https://github.com/darjidhruv26/ResQplate/assets/90086813/8ee68872-2344-4955-bd13-158c09840ff5)
 
 # Phase 5: Application demo
 

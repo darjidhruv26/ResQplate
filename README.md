@@ -260,3 +260,12 @@ Application running
 - On the Donatore food accepted page
   
 ![apprunning 2 donation](https://github.com/darjidhruv26/ResQplate/assets/90086813/c6262c3f-3901-469f-9fa7-8eaa5657bed2)
+
+
+Reference
+[For CI/CD](https://github.com/darjidhruv26/AWS-CICD-Pipeline?tab=readme-ov-file#create-ec2-instance)
+[From AWS Blogs](https://aws.amazon.com/blogs/devops/building-an-end-to-end-kubernetes-based-devsecops-software-factory-on-aws/)
+[Snyk integration in CI/CD](https://docs.snyk.io/integrate-with-snyk/snyk-ci-cd-integrations/aws-codepipeline-integration-by-adding-a-snyk-scan-stage)
+[Snyk Docs](https://snyk.io/blog/automate-vulnerability-scanning-in-aws-codepipeline-with-snyk/)
+[Isaac Adepitan's Blog for Namecheap to Route53](https://dev.to/1zyik/how-to-connect-your-namecheap-domain-to-route-53-2i8)
+[Namecheap Docs](https://www.namecheap.com/support/knowledgebase/article.aspx/10371/2208/how-do-i-link-my-domain-to-amazon-web-services/)

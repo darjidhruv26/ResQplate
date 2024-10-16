@@ -44,7 +44,7 @@
           <p class="mobile">9852730435</p>
         </div>
         <div class="chat-box">
-          <div class="chat-display">
+          <div class="chat-display" id="chat-display-box">
             <div class="to">
               Hello this is message to thank you for your help Yagnik Help Hello
               this is m k our hel essage to you for y thank you for your e to
@@ -92,5 +92,28 @@
       </div>
       <% } %>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      // Get references to DOM elements
+      const messageForm = document.getElementById("message-form");
+      const messageInput = document.getElementById("input-message");
+      const messagesList = document.getElementById("chat-display-box");
+
+      // Listen for 'message' events from the server
+      socket.on("message", (data) => {
+        const li = document.createElement("li");
+        li.textContent = data;
+        messagesList.appendChild(li);
+      });
+
+      // Send message when form is submitted
+      messageForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = messageInput.value;
+        socket.emit("message", message);
+        messageInput.value = "";
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,43 @@
+version: 0.2
+
+env:
+  parameter-store:
+    USERNAME: /myapp/docker-credentials/username
+    PASSWORD: /myapp/docker-credentials/password
+    KEY: /myapp/mongodb/url
+    SID: /myapp/accountSid/id
+    TOKEN: /myapp/authtoken/token
+    NUMBER: /myapp/twiliophonenumber/number
+    SNYK_TOKEN: /myapp/snyk/apikey  # Assuming Snyk API token is stored in AWS Parameter Store
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - node --version
+      - echo "installed node"
+      - npm install -g snyk  # Install Snyk globally
+
+  pre_build:
+    commands:
+      - npm install
+      - echo "dependencies installed"
+      - snyk auth $SNYK_TOKEN  # Authenticate with Snyk using the API token
+      - snyk test || true # Run Snyk test to check for vulnerabilities in node dependencies
+
+  build:
+    commands:
+      - docker build . -t dhruvdarji123/resqplate-app:latest --build-arg MONGODB_URL_PARAM=$KEY --build-arg ACCOUNT_SID_PARAM=$SID --build-arg AUTH_TOKEN_PARAM=$TOKEN --build-arg TWILIO_PHONE_NUMBER_PARAM=$NUMBER
+      - snyk container test dhruvdarji123/resqplate-app:latest --file=Dockerfile --severity-threshold=high > snyk-report.txt || true  # Run Snyk container scan
+      - cat snyk-report.txt
+
+  post_build:
+    commands:
+      - echo "waiting right now"
+      - docker login -u $USERNAME -p $PASSWORD
+      - docker push dhruvdarji123/resqplate-app:latest
+
+artifacts:
+  type: zip
+  files: '**/*'

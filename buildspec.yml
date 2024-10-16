@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  parameter-store:
+    USERNAME: /myapp/docker-credentials/username
+    PASSWORD: /myapp/docker-credentials/password
+    KEY:  /myapp/mongodb/url
+    SID: /myapp/accountSid/id
+    TOKEN: /myapp/authtoken/token
+    NUMBER: /myapp/twiliophonenumber/number
+    
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - node --version
+      - echo "installed node "
+    # steps:
+  pre_build:
+    commands:
+      - npm install
+      - echo "dependencies installed"    
+  build:
+    commands:
+      - docker build . -t dhruvdarji123/resqplate-app:latest --build-arg MONGODB_URL_PARAM=$KEY --build-arg ACCOUNT_SID_PARAM=$SID --build-arg AUTH_TOKEN_PARAM=$TOKEN --build-arg TWILIO_PHONE_NUMBER_PARAM=$NUMBER
+  post_build:
+    commands:
+      - echo "waiting right now"
+      - docker login -u $USERNAME -p $PASSWORD
+      - docker push dhruvdarji123/resqplate-app:latest 
+artifacts:
+  files:
+    - '**/*'
+  base-directory: "./"
+  name: resqplate
+  discard-paths: no

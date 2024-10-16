@@ -1,9 +1,9 @@
 const User = require("../model/user");
 const Food = require("../model/food");
 
-const accountSid = "AC90904b5a199ff0066fc00c6755a5ef8e";
-const authToken = "9a7142961afd24237f803e5d2b658c26";
-const twilioPhoneNumber = "+13344873838";
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
+const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
 const twilio = require("twilio")(accountSid, authToken);
 

@@ -11,8 +11,7 @@ const socketIo = require("socket.io");
 
 const User = require("./model/user");
 
-const MONGODB_URL =
-  "mongodb+srv://mastermind:ES7D5YZV2NH0WBnH@cluster0.rhymsld.mongodb.net/resQplateDB";
+const MONGODB_URL =process.env.MONGODB_URI;
 
 mongoose.set("strictQuery", false);
 const app = express();
